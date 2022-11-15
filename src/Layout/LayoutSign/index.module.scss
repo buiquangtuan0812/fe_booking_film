@@ -1,0 +1,85 @@
+.container__layout {
+    background-color: #f9f6ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // display: none;
+    // margin: auto;
+}
+.formSign {
+    padding: 44px 414px;
+    // min-width: 644px;
+    // display: none
+}
+.sign__main {
+    background-color: #fff;
+    max-width: 644px;
+    box-shadow: 1px 1px 2px 2px #ccc;
+    padding: 32px 36px 32px 48px;
+}
+.sign__main-content {
+    // display: flex;
+    width: 100%;
+}
+.input-sign-id {
+    padding: 12px;
+    width: 332px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin: 8px 0 8px 90px;
+}
+.input-sign-number {
+    width: 332px;
+    font-size: 16px;
+    padding: 12px;
+    margin: 8px 0 8px 62px;
+    border: 1px solid #ccc;
+}
+.input-sign-psw {
+    width: 332px;
+    font-size: 16px;
+    padding: 12px;
+    margin: 8px 0 8px 93px;
+    border: 1px solid #ccc;
+}
+.options-year,
+.options-month,
+.options-day {
+    margin: 12px 16px 16px 16px;
+    border: 1px solid #ccc;
+    width: 98px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.btn-sign {
+    margin-top: 24px;
+}
+
+.btn-submit-sign {
+    padding: 12px 24px 12px 24px;
+    font-size: 16px;
+    margin: 0 14px 0 0 ;
+    float: right;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.clause-sign {
+    display: inline-block;
+}
+.check-clause {
+    margin-right: 8px;
+}
+.clause-text-sign {
+    font-size: 14px;
+    color: #444;
+}
+.clause-text-sign a {
+    font-size: 16px;
+    color: blue;
+    text-decoration-line: underline;
+    &:hover {
+        cursor: pointer;
+    }
+}

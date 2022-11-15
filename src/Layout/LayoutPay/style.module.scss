@@ -1,0 +1,129 @@
+.container__layout {
+    display: flex;
+    margin: auto;
+    width: 980px;
+    flex-direction: column;
+}
+
+.money__bill {
+    .number-money {
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'linlivertine';
+    }
+    .unit-money {
+        margin-left: 4px;
+    }
+    .money__film {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .img__des {
+            img {
+                height: 120px;
+                width: 100px;
+            }
+        }
+        .content__film {
+            margin-left: -100px;
+            min-width: 480px;
+            &-name {
+                font-size:18px;
+                margin: 12px 0 16px 0;
+            }
+            &-info {
+                font-size: 14px;
+                margin-bottom: 6px;
+                position: relative;
+                &-title {
+                    color: #666666;
+                    margin-right: 12px;
+                }
+                &-day, 
+                &-time, &-number {
+                    margin-right: 12px;
+                    &::after {
+                        content: "";
+                        top: 3px;
+                        height: 14px;
+                        margin-left: 6px;
+                        position: absolute;
+                        border-right:1px solid #666666;
+                    }
+                }
+                &-room {
+                    margin-right: 16px;
+                    &::after {
+                        content: "";
+                        top: 3px;
+                        height: 14px;
+                        margin-left: 10px;
+                        position: absolute;
+                        border-right:1px solid #666666;
+                    }
+                }
+            }
+        }
+    }
+    .money__nav {
+        display: flex;
+        margin-top: 12px;
+        align-items: center;
+        justify-content: space-around;
+        .img__description {
+            img {
+                height: 120px;
+                width: 100px;
+            }
+        }
+        .content__food {
+            width: 480px;
+            margin-left: -98px;
+            h4 {
+                font-size: 18px;
+                margin: 12px 0 16px 0;
+            }
+            &-info {
+                font-size: 14px;
+                margin-bottom: 6px;
+                position: relative;
+                &-title {
+                    color: #666666;
+                    margin-right: 16px;
+                }
+                &-type, &-size {
+                    margin-right: 16px;
+                    &::after {
+                        content: "";
+                        top: 3px;
+                        height: 14px;
+                        margin-left: 8px;
+                        position: absolute;
+                        border-right:1px solid #666666;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.total__bill {
+    display: flex;
+    justify-content: space-around;
+    &-head {
+        font-size: 20px;
+        margin-right: 32px;
+    }
+    &-money {
+        margin-right: -132px;
+        min-width: 28px;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'linlivertine';
+        &-unit {
+            margin-left: 4px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+}

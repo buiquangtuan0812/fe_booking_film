@@ -1,0 +1,100 @@
+.layoutLog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f6ec;
+    // display: none;
+}
+.formLogin {
+    padding: 44px 280px;
+}
+.changeDisplay {
+    display: block;
+    height: 1000px;
+    padding: 44px 280px;
+    background-color: #f9f6ec;
+}
+.form__header {
+    font-weight: 500;
+    font-size: 26px;
+    margin-top: 0;
+}
+.form__main {
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    padding: 32px 40px;
+}
+.form__main-content {
+    width: 50%;
+}
+.form__input {
+    padding: 0px 12px 8px 0;
+}
+.input-id{
+    padding: 12px;
+    width: 290px;
+    margin-left: 24px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.input-psw {
+    padding: 12px;
+    width: 290px;
+    font-size: 16px;
+    margin-left: 24px;
+    margin-bottom: 24px;
+}
+
+.form__submit {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+.require-psw {
+    margin-left: 140px;
+}
+
+.submit-log{
+    padding: 16px 24px;
+    font-size: 16px;
+}
+.submit-log:hover,
+.submit-sign:hover,
+.require-psw:hover,
+.suggest-text:hover {
+    cursor: pointer;
+}
+.form__main-img {
+    width: 50%;
+}
+.ad-img {
+    width: 100%;
+    height: 278px;
+}
+
+.suggest-sign {
+    display: flex;
+    align-items: center;
+    margin: 12px 0 0 0;
+}
+.submit-sign {
+    margin-left: 150px;
+    font-size: 16px;
+    padding: 0px 20px;
+    height: 40px;
+}
+
+.clause {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+.checked-clause {
+    margin-top: 6px;
+}
+.clause-text {
+    margin-left: 4px;
+}
+

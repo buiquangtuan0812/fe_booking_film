@@ -1,0 +1,88 @@
+.wrapper {
+    background-color: #fff;
+    margin: 32px 0 100px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.Container__film {
+    height: 274px;
+    width: 990px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+}
+.display__film {
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 274px;
+    align-items: center;
+    position: absolute;
+    padding: 0;
+}
+.film {
+    position: relative;
+    list-style: none;
+    width: 188px;
+    float: left;
+    margin-right: 10px;
+    height: 274px;
+    &:hover .layout{
+        display: block;
+        cursor: pointer;
+    }
+    &:hover .option__film{
+        display: flex;
+    }
+}
+.layout {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(./image/bg_mask80.png) repeat left top;
+}
+.option__film {
+    top: 50%;
+    width: 100%;
+    display: none;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(-50%);
+    z-index: 10;
+    :nth-child(1) {
+        margin-bottom: 6px;
+    }
+    button {
+        font-size: 16px;
+        font-weight: 500;
+        width: 120px;
+        height: 40px;
+        cursor: pointer;
+        background-color: transparent;
+        color: #c48f2d;
+        border: 1px solid #c48f2d;
+    }
+}
+.img__film {
+    width: 188px;
+    height: 274px;
+}
+.btn__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 12px;
+    margin-left: 1032px;
+    :hover {
+        cursor: pointer;
+    }
+}
+.icon__next {
+    font-size: 60px;
+}

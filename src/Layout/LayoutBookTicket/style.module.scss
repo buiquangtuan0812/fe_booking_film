@@ -1,0 +1,437 @@
+.cb {
+    display: flex;
+    flex-direction: column;
+    width: 980px;
+    margin: auto;
+}
+
+.container__bookticket {
+    padding: 32px;
+    margin-bottom: 24px;
+    background-color: #efebdb;
+}
+
+.bookticket__select {
+    display: flex;
+    padding: 12px;
+    background-color: #fff;
+    justify-content: space-between;
+    .select-number {
+        margin-right: 20px;
+        font-weight: 600;
+    }
+    .option-member {
+        width: 64px;
+        height: 28px;
+        padding: 0 4px;
+    }
+    &-member {
+        margin-left: -312px;
+    }
+    &-note {
+        opacity: 0.7;
+    }
+}
+
+.screen {
+    line-height: 24px;
+    font-size: 20px;
+    display: flex;
+    background: url('./image/bg_screen.gif') no-repeat 0 0;
+    justify-content: center;
+}
+
+.bookticket__sate {
+    display: flex;
+    justify-content: space-between;
+    &-select {
+        list-style: none;
+        li {
+            display: flex;
+            margin: 6px 0;
+            justify-content: center;
+            p {
+                text-align: left;
+                margin: 0 40px 0 0;
+            }
+            span {
+                text-align: center;
+                font-size: 14px;
+                color: #fff;
+                margin: 0 8px;
+                padding: 4px 10px;
+                background-color: #848484;
+            }
+        }
+    }
+}
+
+.bookticket__sate-note {
+    &-list {
+        padding: 12px;
+        display: flex;
+        list-style: none;
+        background-color: #fff;
+        justify-content: space-evenly;
+        li {
+            line-height: 14px;
+            margin-left: 24px;
+        }
+    }
+    &-item1 {
+        padding-left: 28px;
+        background: url('./image/selected.gif') no-repeat 0 0;
+    }
+    &-item2 {
+        padding-left: 28px;
+        background: url('./image/clcik.gif') no-repeat 0 0;
+    }
+    &-item3 {
+        padding-left: 28px;
+        background: url('./image/buyed.gif') no-repeat 0 0;
+    }
+    &-item4 {
+        padding-left: 28px;
+        background: url('./image/warn.gif') no-repeat 0 0;
+    }
+}
+
+.bookticket__sate-type {
+    list-style: none;
+}
+.bookticket__sate-vip {
+    padding-left: 28px;
+    line-height: 14px;
+    background: url('./image/sate_vip.gif') no-repeat 0 0;
+    background-size: 14px 14px;
+}
+.bookticket__sate-normal {
+    margin-top: 24px;
+    padding-left: 28px;
+    line-height: 14px;
+    background: url('./image/clcik.gif') no-repeat 0 0;
+}
+
+.cbn {
+    background-color: #f9f6ec;
+    padding: 10px 0 40px 0;
+}
+
+.container__book-nav {
+    display: flex;
+    margin: auto;
+    width: 980px;
+    flex-direction: column;
+}
+
+.bookticket__food {
+    .container__option {
+        width: 228px;
+        margin-right: 40px;
+        display: inline-block;
+        :hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
+    .option-des {
+        width: 228px;
+    }
+    .option {
+        margin-top: -5px;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        p {
+            margin: 0;
+            font-weight: 600;
+            padding: 20px 12px 32px 12px;
+        }
+    }
+    .price-option {
+        height: 38px;
+        padding: 0 12px;
+        line-height: 38px;
+        font-size: 18px;
+        font-family: 'linlivertine';
+        border-top: 1px solid #ccc;
+        span {
+            color: #777;
+            font-size: 14px;
+            margin-right: 44px;
+            text-decoration: none;
+        }
+        .price {
+            text-decoration: underline;
+            margin-right: 0;
+        }
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.book__details {
+    margin-top: 24px;
+    padding-bottom: 24px;
+    background-color: #ffffff;
+    border-top: 2px solid #333;
+    &-heading {
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: space-between;
+        padding: 0 32px;
+        border-bottom: 1px solid #ccc;
+        div {
+            font-size: 28px;
+            padding: 12px;
+            margin-right: -20px;
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+    h4 {
+        padding: 0 32px;
+    }
+}
+.book__drink {
+    padding: 0 80px;
+    .select-water {
+        margin-right: 64px;
+        font-weight: 500;
+    }
+    .select-type {
+        margin-right: 64px;
+    }
+    .water-type {
+        color: #333;
+        padding: 4px 8px;
+        margin-left: 20px;
+    }
+    .select-size {
+        margin-right: 64px;
+    }
+    .water-size {
+        width: 74px;
+        color: #333;
+        margin-left: 38px;
+        padding: 4px 8px;
+    }
+    .water-quantity {
+        width: 64px;
+        color: #333;
+        margin-left: 24px;
+        padding: 4px 8px;
+    }
+}
+
+.book__food {
+    padding: 0 80px;
+    margin-top: 24px;
+    .select-food {
+        margin-right: 74px;
+        font-weight: 500;
+    }
+    .select-size {
+        margin-right: 64px;
+    }
+    .food-size {
+        color: #333;
+        width: 74px;
+        margin-left: 21px;
+        padding: 4px 8px;
+    }
+    .food-quantity {
+        width: 64px;
+        color: #333;
+        margin-left: 9px;
+        padding: 4px 8px;
+    }
+}
+
+.movie-cup {
+    padding: 0 80px;
+    margin-top: 32px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'linlivertine';
+}
+
+.submit {
+    padding: 24px 32px 0 32px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    .total {
+        font-weight: 600;
+        font-size: 20px;
+        font-family: 'linlivertine';
+        &-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 80px;
+            margin-right: 4px;
+        }
+        :nth-child(2) {
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: underline;
+        }
+    }
+
+    .btn-submit {
+        button {
+            color: #e5e1b0;
+            padding: 12px;
+            background-color: #000;
+        }
+        :hover {
+            cursor: pointer;
+            color: #ecda0c;
+            opacity: 0.7;
+        }
+    }
+}
+
+.container__bill {
+    position: relative;
+    background-color: #33373a;
+}
+
+
+.bill__details {
+    width: 980px;
+    margin: auto;
+    display: flex;
+    color: #ffffff;
+    justify-content: space-between;
+    .bill-heading {
+        color: #cdc197;
+        margin: 0 0 12px 0;
+    }
+    .bill__film,
+    .bill__info,
+    .bill__product,
+    .bill__money {
+        width:228px;
+        min-height:200px;
+        padding: 15px 15px 20px;
+        border-right: 1px solid #515151;
+
+    }
+    .bill__film {
+        border-left: 1px solid #515151;
+        &-info {
+            display: flex;
+            img {
+                width: 70px;
+                height: 94px;
+            }
+            p {
+                margin: 0 0 0 12px;
+            }
+        }
+    }
+    .bill__info {
+        &-date {
+            margin-bottom: 6px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 80px;
+            }
+        }
+        &-time {
+            margin-bottom: 6px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 50px;
+            }
+        }
+        &-movie {
+            margin-bottom: 6px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 50px;
+            }
+        }
+        &-room {
+            margin-bottom: 6px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 32px;
+            }
+        }
+        &-sate {
+            margin-bottom: 6px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 72px;
+            }
+        }
+        .price-bill-info {
+            float: right;
+            font-size: 20px;
+            margin-top: 12px;
+            font-family: "linlivertine";
+        }
+    }
+    .bill__product {
+        &-detail {
+            height: 140px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 28px;
+            }
+        }
+        .price-bill-product {
+            font-size:20px;
+            float: right;
+            margin-top: 12px;
+            font-family: "linlivertine";
+        }
+    }
+    .bill__money {
+        &-sate {
+            margin-bottom: 8px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 68px;
+            }
+        }   
+        &-buy {
+            margin-bottom: 8px;
+            height: 100px;
+            :nth-child(1) {
+                color: #a7a9ac;
+                margin-right: 53px;
+            }
+        }
+        .price-money {
+            float: right;
+            font-size: 20px;
+            margin-top: 12px;
+            font-family: "linlivertine";
+        }
+    }
+}
+
+.btn__confirm {
+    right: 74px;
+    top: 104px;
+    position: absolute;
+    button {
+        padding: 12px;
+        cursor: pointer;
+        color: #e5e1b0;
+        background-color: #000;
+    }
+    :hover {
+        color: #ecda0c;
+        opacity: 0.7;
+    }
+}
