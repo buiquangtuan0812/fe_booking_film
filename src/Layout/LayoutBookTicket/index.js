@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState,} from "react";
+import { useLocation } from "react-router-dom";
 
 import Image2 from "./image/combo.png";
 import Image1 from "./image/685fb2351e1741caa3a1d3297d313c85.jpg";
@@ -16,6 +17,9 @@ import {GrFormClose} from "react-icons/gr";
 const cx = classNames.bind(style);
 
 function BookTicket() {
+
+    const location = useLocation()
+    const { room } = location.state;
 
     const [close, setClose] = useState(true);
 

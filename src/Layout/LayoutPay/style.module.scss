@@ -1,3 +1,7 @@
+.body__pay {
+    background-color: #f9f6ec;
+}
+
 .container__layout {
     display: flex;
     margin: auto;
@@ -6,6 +10,9 @@
 }
 
 .money__bill {
+    padding: 12px 0;
+    border-top: 2px solid #333;
+    background-color: #fff;
     .number-money {
         font-size: 24px;
         font-weight: bold;
@@ -109,21 +116,52 @@
 
 .total__bill {
     display: flex;
-    justify-content: space-around;
+    padding: 24px;
+    background-color: #dad2b4;
+    justify-content: space-between;
     &-head {
         font-size: 20px;
-        margin-right: 32px;
+        margin-left: 44px;
     }
     &-money {
-        margin-right: -132px;
         min-width: 28px;
         font-size: 24px;
+        margin-right: 44px;
         font-weight: bold;
         font-family: 'linlivertine';
         &-unit {
             margin-left: 4px;
             font-size: 16px;
             font-weight: 400;
+        }
+    }
+}
+
+.acept__bill {
+    display: flex;
+    align-items: center;
+    background-color: #282e34;
+    padding: 12px 0;
+    justify-content: space-between;
+    .rule__bill {
+        color: #fff;
+        margin-left: 68px;
+        a {
+            color: aqua;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    .btn__acept {
+        margin-right: 60px;
+        button {
+            padding: 12px 20px;
+            font-weight: 500;
+            color: #000;
+            background-color: #b49763;
+            font-size: 20px;
         }
     }
 }
