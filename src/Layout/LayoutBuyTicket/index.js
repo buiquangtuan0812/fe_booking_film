@@ -98,50 +98,50 @@ function BuyTicket() {
                     <div className={cx('time__show')}>
                         <ul className={cx('time__show-list')}>
                             <li> 
-                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen01</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}, id: {index}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 01</div>
                                     <div className={cx('cinema__room-time')}>10:00~11:45</div>
                                     <div className={cx('cinema__room-seat')}>50/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen02</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 02</div>
                                     <div className={cx('cinema__room-time')}>12:00~13:45</div>
                                     <div className={cx('cinema__room-seat')}>100/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen03</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 03</div>
                                     <div className={cx('cinema__room-time')}>14:00~15:45</div>
                                     <div className={cx('cinema__room-seat')}>40/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen04</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 04</div>
                                     <div className={cx('cinema__room-time')}>16:00~17:45</div>
                                     <div className={cx('cinema__room-seat')}>76/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen05</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 05</div>
                                     <div className={cx('cinema__room-time')}>18:00~19:45</div>
                                     <div className={cx('cinema__room-seat')}>89/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen06</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 06</div>
                                     <div className={cx('cinema__room-time')}>20:00~21:45</div>
                                     <div className={cx('cinema__room-seat')}>80/100 Ghế ngồi</div>
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/bookticket/id=${index}`} onClick={getContentRoom}>
-                                    <div className={cx('cinema__room-id')}>Screen07</div>
+                                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}}} onClick={getContentRoom}>
+                                    <div className={cx('cinema__room-id')}>Screen 07</div>
                                     <div className={cx('cinema__room-time')}>22:00~23:45</div>
                                     <div className={cx('cinema__room-seat')}>65/100 Ghế ngồi</div>
                                 </Link>

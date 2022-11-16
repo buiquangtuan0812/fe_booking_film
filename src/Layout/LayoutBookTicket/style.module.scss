@@ -383,9 +383,19 @@
     .bill__product {
         &-detail {
             height: 140px;
-            :nth-child(1) {
+            .none-select {
                 color: #a7a9ac;
-                margin-right: 28px;
+            }
+            .select {
+                width: 105px;
+                overflow: hidden;
+                color: #a7a9ac;
+                white-space: nowrap;
+                display: inline-block;
+                text-overflow: ellipsis;
+            }
+            :nth-child(2) {
+                float: right;
             }
         }
         .price-bill-product {

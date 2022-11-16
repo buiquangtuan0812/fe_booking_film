@@ -44,7 +44,7 @@ function Movie() {
                 <ul className={cx('display__film')}>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/bookticket/id=${index}`}>
+                            <Link to={`/buy_ticket/id=${index}`}>
                                 <button>Đặt Vé</button>
                             </Link>
                             <Link to = {`details_film/id=${index}`}>
@@ -56,7 +56,7 @@ function Movie() {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/bookticket/id=${index}`}>
+                            <Link to={`/buy_ticket/id=${index}`}>
                                 <button>Đặt Vé</button>
                             </Link>
                             <Link to = {`details_film/id=${index+1}`}>
@@ -68,7 +68,7 @@ function Movie() {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/bookticket/id=${index}`}>
+                            <Link to={`/buy_ticket/id=${index}`}>
                                 <button>Đặt Vé</button>
                             </Link>
                             <Link to = {`details_film/id=${index+2}`}>
@@ -80,7 +80,7 @@ function Movie() {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/bookticket/id=${index}`}>
+                            <Link to={`/buy_ticket/id=${index}`}>
                                 <button>Đặt Vé</button>
                             </Link>
                             <Link to = {`details_film/id=${index+3}`}>
@@ -92,7 +92,7 @@ function Movie() {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/bookticket/id=${index}`}>
+                            <Link to={`/buy_ticket/id=${index}`}>
                                 <button>Đặt Vé</button>
                             </Link>
                             <Link to = {`details_film/id=${index+4}`}>

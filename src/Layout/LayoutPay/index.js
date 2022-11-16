@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Style from "./style.module.scss";
 import Heading from "../ExportDefaut";
+import Footer from "../ExportFooter";
 
 const cx = classNames.bind(Style);
 
@@ -10,7 +11,7 @@ function LayoutPay() {
             <Heading />
             <div className={cx('body__pay')}>
                 <div className={cx('container__layout')}>
-                    <h3 className={cx('heading__pay')}>Đặt hàng/Thanh toán</h3>
+                    <h3 className={cx('heading__pay')}>Đặt trước</h3>
                     <div className={cx('money__bill')}>
                         <div className={cx('money__film')}>
                             <div className={cx('img__des')}>
@@ -89,6 +90,7 @@ function LayoutPay() {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

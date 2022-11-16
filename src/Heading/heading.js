@@ -41,7 +41,7 @@ function Heading() {
                 <div className={cx('heading__navbar')}>
                     <ul className={cx('navbar__items')}>
                         <li className={cx('navbar__item')}>
-                            <Link className = {cx('navbar__item-login')} to="/log">
+                            <Link className = {cx('navbar__item-login')} to="/login">
                                 <BiLogIn className={cx('icon-login')}/>
                                 Đăng Nhập
                             </Link>

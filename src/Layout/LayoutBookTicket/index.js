@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState,} from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Image2 from "./image/combo.png";
 import Image1 from "./image/685fb2351e1741caa3a1d3297d313c85.jpg";
@@ -19,91 +19,99 @@ const cx = classNames.bind(style);
 function BookTicket() {
 
     const location = useLocation()
-    const { room } = location.state;
+    const { room, id } = location.state;
+    const roomContent =  room.contentRoom;
 
     const [close, setClose] = useState(true);
 
     const [close2, setClose2] = useState(true);
 
-    const [priceWater, setPriceWater] = useState(20000);
+    const [priceWater, setPriceWater] = useState(30000);
 
-    const [priceFood, setPriceFood] = useState(20000);
+    const [priceFood, setPriceFood] = useState(35000);
 
-    const [totalPrice, setPrice] = useState(0);
-    const [totalPrice2, setPrice2] = useState(0);
+    const [totalPrice, setPrice] = useState(65000);
+    const [totalPrice2, setPrice2] = useState(350000);
+
+    const [typeWater, setType] = useState("Pepsi");
+    const [sizeWater, setSize] = useState("S");
+    const [quanWater, setQuan] = useState(1);
+    const [sizeBong, setSizeBong] = useState("S");
+    const [quanBong, setQuanBong] = useState(1);
 
     const [totalMoney, setMoney] = useState(0);
 
-    useEffect(() => {
-        setPrice(priceFood + priceWater);
-        setPrice2(priceFood + priceWater);
-    });
+    const [infoProduct, setInfor] = useState([]);
 
     const handleChange = (e) => {
+        setSize(e);
         if (e === "S") {
-            setPriceWater(20000);
+            setPriceWater(30000);
         }
         if (e === "M") {
-            setPriceWater(25000);
+            setPriceWater(35000);
         }
         if (e === "L") {
-            setPriceWater(30000);
+            setPriceWater(40000);
         }
     }
 
     const handleChangeFood = (e) => {
+        setSizeBong(e);
         if (e === "S") {
-            setPriceFood(20000);
+            setPriceFood(35000);
         }
         if (e === "M") {
-            setPriceFood(25000);
+            setPriceFood(40000);
         }
         if (e === "L") {
-            setPriceFood(30000);
+            setPriceFood(45000);
         }
     }
 
     const handleQuantity = (e) => {
+        setQuan(e);
         switch(e) {
             case "2":
-                setPriceWater(40000);
+                setPriceWater(60000);
                 break;
             case "3":
-                setPriceWater(60000);
+                setPriceWater(70000);
                 break;
             case "4":
                 setPriceWater(80000);
                 break;
             case "5":
-                    setPriceWater(100000);
-                    break;
+                setPriceWater(100000);
+                break;
             default:
-                setPriceWater(20000);
+                setPriceWater(30000);
         }
     };
 
     const handleQuantity2 = (e) => {
+        setQuanBong(e);
         switch(e) {
             case "2":
-                setPriceFood(40000);
+                setPriceFood(70000);
                 break;
             case "3":
-                setPriceFood(60000);
+                setPriceFood(80000);
                 break;
             case "4":
-                setPriceFood(80000);
+                setPriceFood(90000);
                 break;
             case "5":
                 setPriceFood(100000);
                 break;
             default:
-                setPriceFood(20000);
+                setPriceFood(35000);
         }
     };
 
     const setDefaultPrice = () => {
-        setPriceFood(20000);
-        setPriceWater(20000);
+        setPriceFood(30000);
+        setPriceWater(35000);
     };
 
     const handleClose = () => {
@@ -114,16 +122,75 @@ function BookTicket() {
         setClose2(!close2);
     };
 
-    const showBill1 = () => {
+    const showBill1 = (event) => {
         setClose(!close);
+        const info = [];
+        const value = event.currentTarget;
+        const lst = [...value.childNodes];
+        for (let i = 0; i<lst.length;i++) {
+            if (lst[i].innerText) {
+                info.push(lst[i].innerText);
+            }
+            else {
+                info.push(lst[i].currentSrc);
+            }
+        }
+        const str = info[1];
+        const temp = str.split("\n");
+        info.push(temp[0]);
+        setInfor(info);
     };
 
-    const showBill2 = () => {
+    const showBill2 = (event) => {
         setClose2(!close2);
+        const info = [];
+        const value = event.currentTarget;
+        const lst = [...value.childNodes];
+        for (let i = 0; i<lst.length;i++) {
+            if (lst[i].innerText) {
+                info.push(lst[i].innerText);
+            }
+            else {
+                info.push(lst[i].currentSrc);
+            }
+        }
+        const str = info[1];
+        const temp = str.split("\n");
+        info.push(temp[0]);
+        setInfor(info);
     };
 
     const setTotalPrice = () => {
+        setClose(!close);
+        infoProduct.push(typeWater);
+        infoProduct.push(sizeWater);
+        infoProduct.push(quanWater);
+        infoProduct.push(sizeBong);
+        infoProduct.push(quanBong);
         setMoney(priceFood + priceWater);
+    }
+    const setTotalPrice2 = () => {
+        setClose2(!close2);
+        infoProduct.push(typeWater);
+        infoProduct.push(sizeWater);
+        infoProduct.push(quanWater);
+        infoProduct.push(sizeBong);
+        infoProduct.push(quanBong);
+        setMoney(350000);
+    }
+
+    const handleType = (type) => {
+        setType(type);
+    };
+
+    const Convert = (value) => {
+        if (value==0) {
+            return "0 đ";
+        }
+        else {
+            var ans = value.toString(10);
+            return ans.substr(0, ans.length-3) + "." + ans.substr(-3) + " đ";
+        }
     }
 
     return (
@@ -331,7 +398,7 @@ function BookTicket() {
                         <div className={cx('book__drink')}>
                             <span className={cx('select-water')}>Nước uống</span>
                             <span className={cx('select-type')}>Loại
-                                <select className={cx('water-type')}>
+                                <select className={cx('water-type')} onChange={(e)=> handleType(e.target.value)}>
                                     <option value="Pepsi">Pepsi</option>
                                     <option value="Coca">Coca</option>
                                     <option value="7 Up">7 Up</option>
@@ -375,8 +442,7 @@ function BookTicket() {
                         </div>
                         <div className={cx('submit')}>
                             <div className={cx('total')}>Tổng số
-                                <span className={cx('total-price')}>{totalPrice}</span>
-                                <span>đ</span>
+                                <span className={cx('total-price')}>{Convert(totalPrice)}</span>
                             </div>
                             <div className = {cx('btn-submit')}>
                                 <button onClick={setTotalPrice}>Thêm vào giỏ hàng</button>
@@ -442,11 +508,10 @@ function BookTicket() {
                         <div className={cx('movie-cup')}>Movie Cup - Black Panther (Bottle)</div>
                         <div className={cx('submit')}>
                             <div className={cx('total')}>Tổng số
-                                <span className={cx('total-price')}>{totalPrice2+310000}</span>
-                                <span>đ</span>
+                                <span className={cx('total-price')}>{Convert(totalPrice2)}</span>
                             </div>
                             <div className = {cx('btn-submit')}>
-                                <button>Thêm vào giỏ hàng</button>
+                                <button onClick={setTotalPrice2}>Thêm vào giỏ hàng</button>
                             </div>
                         </div>
                     </div>
@@ -472,7 +537,7 @@ function BookTicket() {
                         </div>
                         <div className={cx('bill__info-time')}>
                             <span>Giờ chiếu</span>
-                            <span>19:00~22:50</span>
+                            <span>{roomContent[1]}</span>
                         </div>
                         <div className={cx('bill__info-movie')}>
                             <span>Rạp chiếu</span>
@@ -480,22 +545,22 @@ function BookTicket() {
                         </div>
                         <div className={cx('bill__info-room')}>
                             <span>Phòng chiếu</span>
-                            <span>01</span>
+                            <span>{roomContent[0]}</span>
                         </div>
                         <div className={cx('bill__info-sate')}>
                             <span>Số ghế</span>
                             <span>08</span>
                         </div>
-                        <div className={cx('price-bill-info')}>100.000 đ</div>
+                        <div className={cx('price-bill-info')}>{Convert(100000)}</div>
                     </div>
 
                     <div className={cx('bill__product')}>
                         <h5 className={cx('bill-heading')}>Thông tin sản phẩm</h5>
                         <div className={cx('bill__product-detail')}>
-                            <span>Name Product</span>
-                            <span>135.000 đ</span>
+                            <span className={cx((infoProduct[2] ? 'select': "none-select"))}>{(infoProduct[2] ? infoProduct[2] : "Vui lòng chọn sản phẩm")}</span>
+                            <span>{(infoProduct[2] ? Convert(totalMoney) : "")}</span>
                         </div>
-                        <div className={cx('price-bill-product')}>150.000 đ</div>
+                        <div className={cx('price-bill-product')}>{Convert(totalMoney)}</div>
                     </div>
 
                     <div className={cx('bill__money')}>
@@ -506,16 +571,17 @@ function BookTicket() {
                         </div>
                         <div className={cx('bill__money-buy')}>
                             <span>Mua hàng</span>
-                            <span>135.000 đ</span>
+                            <span>{Convert(totalMoney)}</span>
                         </div>
-                        <div className={cx('price-money')}>250.000 đ</div>
+                        <div className={cx('price-money')}>{Convert(250000)}</div>
                     </div>
                 </div>
-                <div className={cx('btn__confirm')}>
-                    <button>Xác Nhận</button>
-                </div>
+                <Link to={'payment'}>
+                    <div className={cx('btn__confirm')}>
+                        <button>Xác Nhận</button>
+                    </div>
+                </Link>
             </div>
-            <Layoutpay/>
             <Footer/>
         </div>
     )

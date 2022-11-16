@@ -1,8 +1,20 @@
+import { useState } from 'react';
+
 import classNames from 'classnames/bind';
 import styles from './index.module.scss';
 const cx = classNames.bind(styles);
 
 function Sign() {
+
+    const [userName, setName] = useState("");
+    const [phoneNumber, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [birthday, setBirthday] = useState("");
+
+    const getName = (event) => {
+        setName(event);
+    }
+
     return (
         <div className={cx('container__layout')}>
             <div className={cx('formSign')}>
@@ -16,8 +28,8 @@ function Sign() {
                                 <input name = "ID" type = "text" placeholder="" className = {cx('input-sign-id')}/>
                             </label>
                             <br></br>
-                            <label htmlFor ="psw"><b>Số Điện Thoại</b>
-                                <input type="password" name = "psw" className={cx('input-sign-number')} placeholder=""/>
+                            <label htmlFor ="psw"><b>Email</b>
+                                <input type="text" name = "psw" className={cx('input-sign-number')} placeholder=""/>
                             </label>
                             <br></br>
                             <label htmlFor ="psw"><b>Mật Khẩu</b>
