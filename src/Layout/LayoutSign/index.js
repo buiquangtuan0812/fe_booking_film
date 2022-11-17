@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 import classNames from 'classnames/bind';
@@ -7,13 +8,42 @@ const cx = classNames.bind(styles);
 function Sign() {
 
     const [userName, setName] = useState("");
-    const [phoneNumber, setPhone] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [year, setYear] = useState("1990");
+    const [month, setMonth] = useState("01");
+    const [day, setDay] = useState("01");
 
     const getName = (event) => {
         setName(event);
     }
+    const getEmail = (event) => {
+        setEmail(event);
+    }
+    const getPassword = (event) => {
+        setPassword(event);
+    }
+    const getBirthday = () => {
+        const birthdays = year + "-" + month + "-" + day;
+        setBirthday(birthdays.toString());
+    }
+
+    const sendRequest = () => {
+        getBirthday();
+        console.log(birthday, typeof birthday);
+        const data = {
+            "userName": userName,
+            "password": password,
+            "name": userName,
+            "email": email,
+            "birthDate": birthday
+        }
+        axios
+            .post('http://localhost:8080/register', data)
+            .then(response => console.log(response))
+            .catch(err => console.log(err))
+    };
 
     return (
         <div className={cx('container__layout')}>
@@ -25,22 +55,22 @@ function Sign() {
                     <div className={cx('sign__main-content')}>
                         <form className={cx('form__input')}>
                             <label htmlFor ="ID"><b>Họ Và Tên</b>
-                                <input name = "ID" type = "text" placeholder="" className = {cx('input-sign-id')}/>
+                                <input name = "ID" type = "text" placeholder="" className = {cx('input-sign-id')} onChange={(e)=>getName(e.target.value)}/>
                             </label>
                             <br></br>
                             <label htmlFor ="psw"><b>Email</b>
-                                <input type="text" name = "psw" className={cx('input-sign-number')} placeholder=""/>
+                                <input type="text" name = "psw" className={cx('input-sign-number')} placeholder="email@gmail.com" onChange={(e)=>getEmail(e.target.value)}/>
                             </label>
                             <br></br>
                             <label htmlFor ="psw"><b>Mật Khẩu</b>
-                                <input type="password" name = "psw" className={cx('input-sign-psw')} placeholder="Tối thiểu 6 kí tự"/>
+                                <input type="password" name = "psw" className={cx('input-sign-psw')} placeholder="Tối thiểu 6 kí tự" onChange={(e) => getPassword(e.target.value)}/>
                             </label>
                         </form>
                     </div>
                     <div className = {cx('select-birth')}>
                         <span>Ngày tháng năm sinh</span>
                         <span className = {cx('input-text')}>
-                            <select className = {cx('options-year')}>
+                            <select className = {cx('options-year')} onChange={(e)=> setYear(e.target.value)}>
                                 <option value ="1990">1990</option>
                                 <option value ="1991">1991</option>
                                 <option value ="1992">1992</option>
@@ -58,7 +88,7 @@ function Sign() {
                             </select>
                         </span>
                         <span className = {cx('input-text')}>
-                            <select className = {cx('options-month')}>
+                            <select className = {cx('options-month')} onChange={(e)=> setMonth(e.target.value)}>
                                 <option value ="01">01</option>
                                 <option value ="02">02</option>
                                 <option value ="03">03</option>
@@ -74,7 +104,7 @@ function Sign() {
                             </select>
                         </span>
                         <span className = {cx('input-text')}>
-                            <select className = {cx('options-day')}>
+                            <select className = {cx('options-day')} onChange={(e)=> setDay(e.target.value)}>
                                     <option value ="01">01</option>
                                     <option value ="02">02</option>
                                     <option value ="03">03</option>
@@ -117,7 +147,7 @@ function Sign() {
                                 <a> điều khoản!</a>
                             </p>
                         </div>
-                        <button type = "button" className = {cx('btn-submit-sign')}>Đăng Ký</button>
+                        <button type = "button" className = {cx('btn-submit-sign')} onClick={sendRequest}>Đăng Ký</button>
                     </div>
                     {/* <div className="form__main-img">
                         <img src={FromImage} className = "ad-img"/>
