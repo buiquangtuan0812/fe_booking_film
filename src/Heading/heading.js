@@ -1,6 +1,6 @@
 import { AiFillFacebook } from "react-icons/ai";
 import { BsFillPersonCheckFill } from "react-icons/bs";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiUserCircle } from "react-icons/bi";
 import { RiCustomerService2Line } from "react-icons/ri";
 import QRImage from "./image/qr.png"
 import Logo from "./image/logo.png";
@@ -12,7 +12,17 @@ import classNames from 'classnames/bind';
 import styles from './heading.module.scss';
 const cx = classNames.bind(styles);
 
-function Heading() {
+function Heading(nameUser) {
+
+    const iconUser = (value) => {
+        if (value!="") {
+            return <BiUserCircle className={cx('icon-login')}/>
+        }
+        else {
+            return <BiLogIn className={cx('icon-login')}/>
+        }
+    }
+
     return (
         <header>
             <div className = {cx('heading')}>
@@ -42,8 +52,8 @@ function Heading() {
                     <ul className={cx('navbar__items')}>
                         <li className={cx('navbar__item')}>
                             <Link className = {cx('navbar__item-login')} to="/login">
-                                <BiLogIn className={cx('icon-login')}/>
-                                Đăng Nhập
+                                {iconUser(nameUser.name)}
+                                {(nameUser.name) ? nameUser.name : "Đăng Nhập"}
                             </Link>
                         </li>
                         <li className={cx('navbar__item')}>

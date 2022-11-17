@@ -6,7 +6,7 @@ import Footer from "../ExportFooter";
 
 import classNames from "classnames/bind";
 import styles from './form.module.scss';
-import { Outlet, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -15,6 +15,8 @@ function Form() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState("");
+    const [name, setName] = useState("");
+
     const getUserName = (event) => {
         setUserName(event);
     };
@@ -30,7 +32,7 @@ function Form() {
 
         axios
             .post('http://localhost:8080/login', data)
-            .then(res => setToken(res))
+            .then(res => setToken(res.data))
             .catch(err => alert("Nhập lại đi cu"))
     };
     return (
@@ -51,7 +53,7 @@ function Form() {
                             </form>
 
                             <div className={cx('form__submit')}>
-                                <Link to={(token) ? "/home" : "/login"}>
+                                <Link to={(token.accessToken) ? "/home" : "/login"} state = {(token.accessToken) ? {nameUser: token.name} : ""}>
                                     <button type = "button" className = {cx('submit-log')} onClick={sendInput}>Đăng Nhập</button>
                                 </Link>
                                 <p className={cx('require-psw')}>Bạn quên mật khẩu?</p>

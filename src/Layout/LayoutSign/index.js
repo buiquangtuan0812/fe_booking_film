@@ -10,11 +10,10 @@ function Sign() {
     const [userName, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [birthday, setBirthday] = useState("");
+    const [birthday, setBirthday] = useState("1990-01-01");
     const [year, setYear] = useState("1990");
     const [month, setMonth] = useState("01");
     const [day, setDay] = useState("01");
-
     const getName = (event) => {
         setName(event);
     }
@@ -24,25 +23,34 @@ function Sign() {
     const getPassword = (event) => {
         setPassword(event);
     }
-    const getBirthday = () => {
-        const birthdays = year + "-" + month + "-" + day;
-        setBirthday(birthdays.toString());
-    }
 
     const sendRequest = () => {
-        getBirthday();
-        console.log(birthday, typeof birthday);
-        const data = {
-            "userName": userName,
-            "password": password,
-            "name": userName,
-            "email": email,
-            "birthDate": birthday
+        if (email.slice(email.length -10, email.length) !== "@gmail.com") {
+            alert("Vui lòng nhập đúng email!")
         }
-        axios
-            .post('http://localhost:8080/register', data)
-            .then(response => console.log(response))
-            .catch(err => console.log(err))
+        else if (userName.length == 0) {
+            alert("Vui lòng nhập họ tên!");
+        }
+        else if (password.length < 6) {
+            alert("Vui lòng nhập đầy đủ mật khẩu!");
+        }
+        else if (email.length==0 && password.length ==0 && userName.length==0) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+        }
+        else {
+            setBirthday(year+"-"+month+"-"+day);
+            const data = {
+                "userName": userName,
+                "password": password,
+                "name": userName,
+                "email": email,
+                "birthDate": birthday
+            }
+            axios
+                .post('http://localhost:8080/register', data)
+                .then(response => console.log(response))
+                .catch(err => console.log(err))
+        }
     };
 
     return (

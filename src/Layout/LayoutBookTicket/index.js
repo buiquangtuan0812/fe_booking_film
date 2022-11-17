@@ -5,7 +5,6 @@ import Image2 from "./image/combo.png";
 import Image1 from "./image/685fb2351e1741caa3a1d3297d313c85.jpg";
 
 import Heading from '../ExportDefaut';
-import Layoutpay from '../LayoutPay/index';
 import Footer from '../ExportFooter';
 
 
@@ -18,7 +17,7 @@ const cx = classNames.bind(style);
 
 function BookTicket() {
 
-    const location = useLocation()
+    const location = useLocation();
     const { room, id } = location.state;
     const roomContent =  room.contentRoom;
 
