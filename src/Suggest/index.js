@@ -10,7 +10,7 @@ import {GrNext, GrPrevious} from "react-icons/gr";
 const cx = classNames.bind(styles);
 
 
-function Suggest() {
+function Suggest(user) {
 
     const [listFilms, setData] = useState([]);
 
@@ -61,7 +61,7 @@ function Suggest() {
                 <GrPrevious className={cx('icon-pre')} />
             </div>
             <div className={cx('movie__slider')}>
-                <Link to={`details_film/id=${index}`}>
+                <Link to={`details_film/id=${index}`} state={(user) ? {name: user.name} : ""}>
                     <img className={cx('movie__slider-img')} src={listFilm[index]} alt="" srcSet="" />
                 </Link>
             </div>

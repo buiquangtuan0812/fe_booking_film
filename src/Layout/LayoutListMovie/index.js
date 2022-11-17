@@ -13,7 +13,7 @@ import {MdNavigateNext, GrFormNext} from 'react-icons/md';
 
 const cx = classNames.bind(style);
 
-function Movie() {
+function Movie(user) {
 
     const [dataMovie, setData] = useState([]);
     const [index, setId] = useState(0);
@@ -43,10 +43,12 @@ function Movie() {
             <div  className={cx('card-top')}>
                 <img className={cx('img')} src={movie.smallImageURl}/>
                 <div  className={cx('btn')}>
-                    <a  className={cx('btn-component')} href="#">Đặt vé</a>
-                    <NavLink className={cx('btn-component')} to = {`details_film/id=${movie.id-1}`}>
+                    <Link className={cx('btn-component')} to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                        Đặt Vé
+                    </Link>
+                    <Link className={cx('btn-component')} to = {`details_film/id=${movie.id-1}`} state={(user) ? {name : user.name} : ""}>
                         Chi tiết
-                    </NavLink>
+                    </Link>
                 </div>
             </div>
             <div  className={cx('border__content')}>

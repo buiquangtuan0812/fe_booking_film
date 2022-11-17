@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './index.module.scss';
+import { BiCheckbox } from 'react-icons/bi';
 const cx = classNames.bind(styles);
 
 function Sign() {
@@ -14,6 +15,8 @@ function Sign() {
     const [year, setYear] = useState("1990");
     const [month, setMonth] = useState("01");
     const [day, setDay] = useState("01");
+    const [check, setCheck] = useState(false);
+
     const getName = (event) => {
         setName(event);
     }
@@ -23,19 +26,35 @@ function Sign() {
     const getPassword = (event) => {
         setPassword(event);
     }
+    const checkInput = (event) => {
+        if (event.checked) {
+            setCheck(true);
+            console.log("true")
+        }
+        else {
+            console.log("false");
+            setCheck(false);
+        }
+    }
 
     const sendRequest = () => {
-        if (email.slice(email.length -10, email.length) !== "@gmail.com") {
-            alert("Vui lòng nhập đúng email!")
+        if (userName.length == 0 && email.length==0 && password.length == 0 && password.length == 0) {
+            alert("Vui lòng nhập đầy đủ thông tin!");
         }
         else if (userName.length == 0) {
             alert("Vui lòng nhập họ tên!");
+        }
+        else if (email.slice(email.length -10, email.length) !== "@gmail.com") {
+            alert("Vui lòng nhập đúng email!")
         }
         else if (password.length < 6) {
             alert("Vui lòng nhập đầy đủ mật khẩu!");
         }
         else if (email.length==0 && password.length ==0 && userName.length==0) {
             alert("Vui lòng nhập đầy đủ thông tin");
+        }
+        else if(!check) {
+            alert("Bạn cần đồng ý điều khoản của chúng tôi trước khi đăng kí!");
         }
         else {
             setBirthday(year+"-"+month+"-"+day);
@@ -150,7 +169,9 @@ function Sign() {
                     <div className={cx('btn-sign')}>
                         <div className={cx('clause-sign')}>
                             <p className={cx('clause-text-sign')}>
-                                <input type = "checkbox" className={cx('check-clause')}/>
+                                <label>
+                                    <input type = "checkbox" className={cx('check-clause')} onClick={(e)=> setCheck(e.target.checked)}/>
+                                </label>
                                 Tôi đã đọc đồng ý với tất cả các
                                 <a> điều khoản!</a>
                             </p>

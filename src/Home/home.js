@@ -17,8 +17,8 @@ function Home() {
     return (
         <div>
             <Heading name = {nameUser}/>
-            <Suggest/>
-            <ListMovie/>
+            <Suggest name = {nameUser}/>
+            <ListMovie name = {nameUser}/>
             <Footer/>
         </div>
     )

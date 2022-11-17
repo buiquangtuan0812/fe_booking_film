@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import classNames from "classnames/bind";
 import Style from "./style.module.scss";
 import Heading from "../ExportDefaut";
@@ -6,9 +8,13 @@ import Footer from "../ExportFooter";
 const cx = classNames.bind(Style);
 
 function LayoutPay() {
+
+    const location = useLocation();
+    const {name} = location.state; 
+
     return (
         <div>
-            <Heading />
+            <Heading name = {name}/>
             <div className={cx('body__pay')}>
                 <div className={cx('container__layout')}>
                     <h3 className={cx('heading__pay')}>Đặt trước</h3>

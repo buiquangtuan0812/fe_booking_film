@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link , useLocation} from "react-router-dom";
 
 import classNames from "classnames/bind";
 import styles from './index.module.scss';
@@ -19,7 +19,15 @@ import {IoIosClose} from "react-icons/io";
 
 const cx = classNames.bind(styles);
 
-function LayoutFilm({film}) {
+function LayoutFilm() {
+
+    const [nameUser, setName] = useState("");
+    const location = useLocation();
+    useEffect(() => {
+        if (location.state) {
+            setName(location.state.name);
+        }
+    })
 
     const [playAudio, setPlayAudio] = useState("");
     const [dataMovie, setData] = useState([]);
@@ -128,7 +136,7 @@ function LayoutFilm({film}) {
 
     return (
         <div className={cx('container_film')}>
-            <Heading/>
+            <Heading name = {nameUser}/>
             <div className={cx('heading__film')}>
                 <span className = {cx('heading__film-text')}>PHIM HOT TẠI RẠP</span>
             </div>
@@ -169,7 +177,7 @@ function LayoutFilm({film}) {
                 <div className={cx('review')}>
                     <div className={cx('review_left')}>
                         <img src={listFilm.smallImageURl} />
-                        <Link to={`/buy_ticket/id=${index}`}>
+                        <Link to={`/buy_ticket/id=${index}`} state = {{name: (nameUser) ? nameUser : ""}}>
                             <button>Đặt vé</button>
                         </Link>
                     </div>

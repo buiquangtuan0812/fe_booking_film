@@ -18,7 +18,7 @@ const cx = classNames.bind(style);
 function BookTicket() {
 
     const location = useLocation();
-    const { room, id } = location.state;
+    const { room, name} = location.state;
     const roomContent =  room.contentRoom;
 
     const [close, setClose] = useState(true);
@@ -194,7 +194,7 @@ function BookTicket() {
 
     return (
         <div>
-            <Heading />
+            <Heading name = {name}/>
             <div className={cx('cb')}>
                 <div className={cx('container__bookticket')}>
                     <h3 className={cx('book__heading')}>Chọn ghế</h3>
@@ -575,7 +575,7 @@ function BookTicket() {
                         <div className={cx('price-money')}>{Convert(250000)}</div>
                     </div>
                 </div>
-                <Link to={'payment'}>
+                <Link to={'payment'} state={{name: (name) ? name : ""}}>
                     <div className={cx('btn__confirm')}>
                         <button>Xác Nhận</button>
                     </div>
