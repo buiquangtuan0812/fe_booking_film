@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f9f6ec;
+    background-color: #8fc4b7;
+    margin-bottom: -56px;
     // display: none;
 }
 .formLogin {
+    width: 980px;
     padding: 44px 280px;
 }
 .changeDisplay {
@@ -20,11 +22,11 @@
     margin-top: 0;
 }
 .form__main {
-    width: 100%;
+    width: 898px;
     display: flex;
-    background-color: #fff;
-    box-shadow: 2px 2px 2px 2px #ccc;
+    border-radius: 4px;
     padding: 32px 40px;
+    background-color: #fff;
 }
 .form__main-content {
     width: 50%;
@@ -59,6 +61,10 @@
 .submit-log{
     padding: 16px 24px;
     font-size: 16px;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    background-color: #e4a11b;
 }
 .submit-log:hover,
 .submit-sign:hover,
@@ -80,6 +86,10 @@
     margin: 12px 0 0 0;
 }
 .submit-sign {
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    background-color: #e4a11b;
     margin-left: 150px;
     font-size: 16px;
     padding: 0px 20px;

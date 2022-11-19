@@ -1,4 +1,5 @@
 .body__pay {
+    margin-top: -24px;
     background-color: #f9f6ec;
 }
 
@@ -20,6 +21,7 @@
     }
     .unit-money {
         margin-left: 4px;
+        text-decoration: underline;
     }
     .money__film {
         display: flex;
@@ -131,8 +133,9 @@
         font-family: 'linlivertine';
         &-unit {
             margin-left: 4px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 400;
+            text-decoration: underline;
         }
     }
 }
@@ -157,6 +160,7 @@
     .btn__acept {
         margin-right: 60px;
         button {
+            cursor: pointer;;
             padding: 12px 20px;
             font-weight: 500;
             color: #000;

@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 function Home() {
     const [nameUser, setName] = useState("");
     const location = useLocation();
+    const {tokenUser} = location.state.tokenUser;
     useEffect(() => {
         if (location.state) {
             setName(location.state.nameUser);
@@ -17,8 +18,8 @@ function Home() {
     return (
         <div>
             <Heading name = {nameUser}/>
-            <Suggest name = {nameUser}/>
-            <ListMovie name = {nameUser}/>
+            <Suggest name = {nameUser} token = {tokenUser}/>
+            <ListMovie name = {nameUser} token = {tokenUser}/>
             <Footer/>
         </div>
     )

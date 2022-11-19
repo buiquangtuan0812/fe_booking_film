@@ -44,12 +44,34 @@
 .bookticket__sate {
     display: flex;
     justify-content: space-between;
+    img {
+        width: 220px;
+        height: 300px;
+    }
     &-select {
         list-style: none;
         li {
-            display: flex;
+            display: inline-block;
             margin: 6px 0;
             justify-content: center;
+            .seate__vip {
+                padding-left: 28px;
+                line-height: 22px;
+                background: url('./image/sate_vip.gif') no-repeat 0 0;
+                background-size: 22px 22px;
+            }
+            .seate__booked {
+                padding-left: 28px;
+                line-height: 22px;
+                background: url('./image/buyed.gif') no-repeat 0 0;
+                background-size: 22px 22px;
+            }
+            .seate__normal {
+                padding-left: 28px;
+                line-height: 22px;
+                background: url('./image/clcik.gif') no-repeat 0 0;
+                background-size: 22px 22px;
+            }
             p {
                 text-align: left;
                 margin: 0 40px 0 0;
@@ -284,7 +306,8 @@
         }
     }
 
-    .btn-submit {
+    .btn-submit,
+    .btn-submit-1 {
         button {
             color: #e5e1b0;
             padding: 12px;

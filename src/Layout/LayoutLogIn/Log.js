@@ -35,6 +35,7 @@ function Form() {
             .then(res => setToken(res.data))
             .catch(err => alert("Nhập lại đi cu"))
     };
+    console.log(token);
     return (
         <>
             <div className={cx('layoutLog')}>
@@ -53,7 +54,7 @@ function Form() {
                             </form>
 
                             <div className={cx('form__submit')}>
-                                <Link to={(token.accessToken) ? "/home" : "/login"} state = {(token.accessToken) ? {nameUser: token.name} : ""}>
+                                <Link to={(token.accessToken) ? "/home" : "/login"} state = {(token.accessToken) ? {nameUser: token.name, tokenUser:token.accessToken} : ""}>
                                     <button type = "button" className = {cx('submit-log')} onClick={sendInput}>Đăng Nhập</button>
                                 </Link>
                                 <p className={cx('require-psw')}>Bạn quên mật khẩu?</p>

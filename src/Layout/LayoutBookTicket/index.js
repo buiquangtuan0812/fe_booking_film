@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState,} from "react";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 import Image2 from "./image/combo.png";
 import Image1 from "./image/685fb2351e1741caa3a1d3297d313c85.jpg";
@@ -18,17 +19,15 @@ const cx = classNames.bind(style);
 function BookTicket() {
 
     const location = useLocation();
-    const { room, name} = location.state;
+    const { room, name, nameFilm, imgFilm, nameCinema} = location.state;
     const roomContent =  room.contentRoom;
+    const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWV1IiwiaWF0IjoxNjY4ODQ0MTczLCJleHAiOjg4MDY4ODQ0MTczfQ.1qFH8uKJO1oZIgSRpecQvdgcP8z_ynfrXNtC8Qd9f26YqN1D8sGWqapt3NaeNsr-dvvjLSEnKfy79_vj83RT5w";
+
 
     const [close, setClose] = useState(true);
-
     const [close2, setClose2] = useState(true);
-
     const [priceWater, setPriceWater] = useState(30000);
-
     const [priceFood, setPriceFood] = useState(35000);
-
     const [totalPrice, setPrice] = useState(65000);
     const [totalPrice2, setPrice2] = useState(350000);
 
@@ -38,9 +37,49 @@ function BookTicket() {
     const [sizeBong, setSizeBong] = useState("S");
     const [quanBong, setQuanBong] = useState(1);
 
+    const [moneySate, setMoneySate] = useState(0);    
     const [totalMoney, setMoney] = useState(0);
-
     const [infoProduct, setInfor] = useState([]);
+
+    const [datas, setData] = useState({});
+    const [seatePosition, setSeatePosition] = useState(0);
+    const [dataSeate, setDateSeate] = useState([]);
+    const [seateBook, setSeateBook] = useState([]);
+
+    useEffect(()=> {
+        axios
+            .get('http://localhost:8080/api/seat/list', {headers : {"Authorization" : `Bearer ${token}`}, params:{showTimeId:9}})
+            .then(res=>setDateSeate(res.data))
+            .catch(err=>console.log(err))
+    }, []);
+
+    const setTypeSeate = (type, booked) => {
+        if (booked==true) {
+            return 'seate__booked';
+        }
+        else if (type<17) {
+            return 'seate__vip';
+        }
+        else {
+            return 'seate__normal';
+        }
+    }
+
+    const setInfoSeate = (price, position) => {
+        setMoneySate(price+moneySate);
+        setSeatePosition(position);
+        const data = [...seateBook]
+        data.push(position);
+        setSeateBook(data);
+    }
+    const listSeate = 
+    dataSeate.map(seate => {
+        return (
+            <li key ={seate.id}>
+                <span className={cx(setTypeSeate(seate.id, seate.booked))} onClick={()=>setInfoSeate(seate.price, seate.id)}>{seate.id}</span>
+            </li>
+        )
+    })
 
     const handleChange = (e) => {
         setSize(e);
@@ -53,6 +92,7 @@ function BookTicket() {
         if (e === "L") {
             setPriceWater(40000);
         }
+        setPrice(priceFood + priceWater);
     }
 
     const handleChangeFood = (e) => {
@@ -66,6 +106,7 @@ function BookTicket() {
         if (e === "L") {
             setPriceFood(45000);
         }
+        setPrice(priceFood + priceWater);
     }
 
     const handleQuantity = (e) => {
@@ -86,6 +127,7 @@ function BookTicket() {
             default:
                 setPriceWater(30000);
         }
+        setPrice(priceFood + priceWater);
     };
 
     const handleQuantity2 = (e) => {
@@ -106,6 +148,7 @@ function BookTicket() {
             default:
                 setPriceFood(35000);
         }
+        setPrice(priceFood + priceWater);
     };
 
     const setDefaultPrice = () => {
@@ -161,21 +204,45 @@ function BookTicket() {
 
     const setTotalPrice = () => {
         setClose(!close);
+        setMoney(priceFood + priceWater);
         infoProduct.push(typeWater);
         infoProduct.push(sizeWater);
         infoProduct.push(quanWater);
         infoProduct.push(sizeBong);
         infoProduct.push(quanBong);
-        setMoney(priceFood + priceWater);
+        const data = {
+            nameFilm: nameFilm,
+            nameCinema: nameCinema,
+            film: roomContent,
+            imgFilm: imgFilm,
+            number: 1,
+            sate: "D1",
+            moneyFilm: moneySate,
+            product: infoProduct,
+            moneyPro: priceFood + priceWater,
+        };
+        setData(data);
     }
     const setTotalPrice2 = () => {
+        setMoney(350000);
         setClose2(!close2);
         infoProduct.push(typeWater);
         infoProduct.push(sizeWater);
         infoProduct.push(quanWater);
         infoProduct.push(sizeBong);
         infoProduct.push(quanBong);
-        setMoney(350000);
+        const data = {
+            nameFilm: nameFilm,
+            nameCinema: nameCinema,
+            film: roomContent,
+            imgFilm: imgFilm,
+            number: 1,
+            sate: "D1",
+            moneyFilm: moneySate,
+            product: infoProduct,
+            moneyPro: 350000,
+        };
+        setData(data);
     }
 
     const handleType = (type) => {
@@ -232,98 +299,11 @@ function BookTicket() {
 
                     <div className={cx('bookticket__sate')}>
                         <div className={cx('img-des')}>
-                            <img src="https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202209/10764_103_100003.jpg"/>
+                            <img src={imgFilm}/>
                         </div>
 
                         <ul className={cx('bookticket__sate-select')}>
-                            <li>
-                                <p>H1</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H2</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H3</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H4</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H5</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H6</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H7</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
-                            <li>
-                                <p>H8</p>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                                <span>8</span>
-                            </li>
+                            {listSeate}
                         </ul>
 
                         <ul className={cx('bookticket__sate-type')}>
@@ -509,7 +489,7 @@ function BookTicket() {
                             <div className={cx('total')}>Tổng số
                                 <span className={cx('total-price')}>{Convert(totalPrice2)}</span>
                             </div>
-                            <div className = {cx('btn-submit')}>
+                            <div className = {cx('btn-submit-1')}>
                                 <button onClick={setTotalPrice2}>Thêm vào giỏ hàng</button>
                             </div>
                         </div>
@@ -523,8 +503,8 @@ function BookTicket() {
                     <div className={cx('bill__film')}>
                         <h5 className={cx('bill-heading')}>Phim chiếu rạp</h5>
                         <div className={cx('bill__film-info')}>
-                            <img src ={Image2}/>
-                            <p className={cx('bill__film-info-name')}>Name Film</p>
+                            <img src ={imgFilm}/>
+                            <p className={cx('bill__film-info-name')}>{nameFilm}</p>
                         </div>
                     </div>
 
@@ -550,7 +530,7 @@ function BookTicket() {
                             <span>Số ghế</span>
                             <span>08</span>
                         </div>
-                        <div className={cx('price-bill-info')}>{Convert(100000)}</div>
+                        <div className={cx('price-bill-info')}>{Convert(moneySate)}</div>
                     </div>
 
                     <div className={cx('bill__product')}>
@@ -566,16 +546,16 @@ function BookTicket() {
                         <h5 className={cx('bill-heading')}>Tổng tiền đơn hàng</h5>
                         <div className={cx('bill__money-sate')}>
                             <span>Đặt ghế</span>
-                            <span>100.000 đ</span>
+                            <span>{Convert(moneySate)}</span>
                         </div>
                         <div className={cx('bill__money-buy')}>
                             <span>Mua hàng</span>
                             <span>{Convert(totalMoney)}</span>
                         </div>
-                        <div className={cx('price-money')}>{Convert(250000)}</div>
+                        <div className={cx('price-money')}>{Convert(moneySate + totalMoney)}</div>
                     </div>
                 </div>
-                <Link to={'payment'} state={{name: (name) ? name : ""}}>
+                <Link to={'payment'} state={{name: (name) ? name : "", data: datas}}>
                     <div className={cx('btn__confirm')}>
                         <button>Xác Nhận</button>
                     </div>
