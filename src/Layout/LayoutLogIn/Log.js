@@ -35,6 +35,7 @@ function Form() {
             .then(res => setToken(res.data))
             .catch(err => alert("Sai tên đăng nhập hoặc mật khẩu !"))
     };
+    console.log(token);
     return (
         <>
             <div className={cx('layoutLog')}>

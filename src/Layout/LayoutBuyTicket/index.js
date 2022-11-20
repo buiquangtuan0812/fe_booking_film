@@ -32,15 +32,16 @@ function BuyTicket() {
     const [dataRoom, setDataRoom] = useState([]);
     const [nameCinema, setNameCinema] = useState("Cinema HÀ ĐÔNG");
     const Months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    
+    const tokenDefault = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlY3VhZG8iLCJpYXQiOjE2Njg5MzI0MTQsImV4cCI6ODgwNjg5MzI0MTR9.BFFGwDRI4IyJuXvfnVhzM1Z-3sESZVqNVLxbVb6OaUNzURbyTs_cUZn2YuuoJT8iZbhVXP1Q0_rjcYsCPXj5sQ";
+
     useEffect(() => {
         if (location.state) {
             setToken(location.state.tokenUser);
             setName(location.state.name);
         }
     })
-
-
+    
+    
     useEffect(() => {
         axios.get('http://localhost:8080/api/movies/list')
             .then (res => {
@@ -49,9 +50,9 @@ function BuyTicket() {
             .catch(err => {
                 console.log(err);
             })
-    }, [])
+        }, [])
         
-    useEffect(() => {
+        useEffect(() => {
         const date = new Date();
         const Month = date.getMonth() + 1;
         setDay(date.getDate());
@@ -60,18 +61,18 @@ function BuyTicket() {
         var ans = day.toString() + "/" + Month.toString() + "/" + year.toString();
         setDate(ans);
     },[day, month, year]);
-
+    
     useEffect(()=> {
         const Data = {
-            movieId: 3,
+            movieId: InfoFilm.id+1,
             theaterName: "Cinema HÀ ĐÔNG",
-            startTime: "19/11/2022"
+            startTime: "23/11/2022"
         }
         axios
-        .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${token}`}, params: Data })
-        .then(response => setDataRoom(response.data))
-        .catch(err => console.log(err))
-    }, []);
+            .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${tokenDefault}`}, params: Data })
+            .then(response => setDataRoom(response.data))
+            .catch(err => console.log(err))
+    },[]);
     
     const getContentRoom = (event) => {
         const value = event.currentTarget;
@@ -96,8 +97,8 @@ function BuyTicket() {
 
         return (
             <li key = {room.id}> 
-                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}, name: (nameUser) ? nameUser : "", nameFilm: InfoFilm.name, 
-                imgFilm: InfoFilm.smallImageURl, nameCinema: nameCinema, tokenUser:token, date: dateOfWeek}} onClick={(e) => {getContentRoom(e)}}>
+                <Link to={(token!=tokenDefault && token!="") ? `/bookticket/id=${index}` : "/login"} state={{room: {contentRoom}, roomId: room.id, name: (nameUser) ? nameUser : "", nameFilm: InfoFilm.name, 
+                    imgFilm: InfoFilm.smallImageURl, nameCinema: nameCinema, tokenUser:token, date: dateOfWeek}} onClick={(e) => {getContentRoom(e)}}>
                     <div className={cx('cinema__room-id')}>{room.screen.name}</div>
                     <div className={cx('cinema__room-time')}>{time}</div>
                     <div className={cx('cinema__room-seat')}>{`${capacity} Ghế ngồi`}</div>
@@ -151,7 +152,7 @@ function BuyTicket() {
         const jsonData = {
             movieId: InfoFilm.id,
             theaterName: event.target.value,
-            startTime: "19/11/2022"
+            startTime: dateOfWeek
         }
         axios
             .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${token}`}, params: jsonData })
@@ -166,10 +167,10 @@ function BuyTicket() {
         const jsonData = {
             movieId: InfoFilm.id,
             theaterName: nameCinema,
-            startTime: "19/11/2022"
+            startTime: dateOfWeek
         }
         axios
-            .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${token}`}, params: jsonData })
+            .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${(token) ? token : tokenDefault}`}, params: jsonData })
             .then(response => setDataRoom(response.data))
             .catch(err => console.log(err))
     }

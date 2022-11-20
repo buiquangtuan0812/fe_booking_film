@@ -179,7 +179,7 @@ function LayoutFilm() {
                 <div className={cx('review')}>
                     <div className={cx('review_left')}>
                         <img src={listFilm.smallImageURl} />
-                        <Link to={`/buy_ticket/id=${index}`} state = {{name: (nameUser) ? nameUser : "", tokenUser: token}}>
+                        <Link to={(token) ? `/buy_ticket/id=${index}` : "/login"} state = {{name: (nameUser) ? nameUser : "", tokenUser: token}}>
                             <button>Đặt vé</button>
                         </Link>
                     </div>

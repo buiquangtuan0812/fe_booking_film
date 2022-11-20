@@ -19,7 +19,7 @@ const cx = classNames.bind(style);
 function BookTicket() {
 
     const location = useLocation();
-    const { room, name, nameFilm, imgFilm, nameCinema, tokenUser, date} = location.state;
+    const { room, roomId, name, nameFilm, imgFilm, nameCinema, tokenUser, date} = location.state;
     const roomContent =  room.contentRoom;
     const token = tokenUser;
 
@@ -49,7 +49,7 @@ function BookTicket() {
 
     useEffect(()=> {
         axios
-            .get('http://localhost:8080/api/seat/list', {headers : {"Authorization" : `Bearer ${token}`}, params:{showTimeId:9}})
+            .get('http://localhost:8080/api/seat/list', {headers : {"Authorization" : `Bearer ${token}`}, params:{showTimeId:roomId}})
             .then(res=>setDateSeate(res.data))
             .catch(err=>console.log(err))
     }, []);
@@ -59,38 +59,42 @@ function BookTicket() {
             
             return 'seate__booked';
         }
-        else if (type >= 10 && type<17) {
+        else if (type == 'VIP') {
             return 'seate__vip';
         }
-        else if (type < 10) {
-            return 'seate__vip-nav';
-        }
+        // else if (type == 'Normal') {
+        //     return 'seate__vip-nav';
+        // }
         else {
             return 'seate__normal';
         }
     }
 
-    const setInfoSeate = (price, position, sate) => {
+    const setInfoSeate = (price, position, seate) => {
         setMoneySate(price+moneySate);
         const data = [...seateBook];
         data.push(position);
         setSeateBook(data);
+        const res = date.slice(6, date.length) + '-' + date.slice(3, 5) + '-' + date.slice(0,2);
         const dataSeate = {
-            "book_date": "2022-11-19",
+            "book_date": res,
             "total": price,
-            "showTime": 55,
+            "showTime": roomId,
             "seatSet":data
         }
         setDataSeateBooked(dataSeate);
+        const result = [...numberSate];
+        result.push(seate);
+        console.log(result)
         var ans = "";
-        for (var i = 0; i < data.length; i++) {
-            if (i === data.length-1) {
-                ans += "H" + data[i];
+        for (var i = 0; i < result.length; i++) {
+            if (i === result.length-1) {
+                ans += result[i];
             }
             else {
-                ans += "H" + data[i] + ", ";
+                ans += result[i] + ", ";
             }
-        }
+        } 
         console.log(ans);
         setNumber(ans);
     }
@@ -98,7 +102,7 @@ function BookTicket() {
     dataSeate.map(seate => {
         return (
             <li key ={seate.id}>
-                <span className={cx(setTypeSeate(seate.id, seate.booked))} onClick={()=>setInfoSeate(seate.price, seate.id)}>{seate.id}</span>
+                <span className={cx(setTypeSeate(seate.type, seate.booked))} onClick={()=>setInfoSeate(seate.price, seate.id, seate.seatNumber)}>{seate.seatNumber}</span>
             </li>
         )
     })
