@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 
 function Suggest(user) {
-
+    const token = user.token;
     const [listFilms, setData] = useState([]);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ function Suggest(user) {
                 <GrPrevious className={cx('icon-pre')} />
             </div>
             <div className={cx('movie__slider')}>
-                <Link to={`details_film/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                <Link to={`details_film/id=${index}`} state={(user) ? {name: user.name, tokenUser:token} : ""}>
                     <img className={cx('movie__slider-img')} src={listFilm[index]} alt="" srcSet="" />
                 </Link>
             </div>

@@ -19,10 +19,9 @@ const cx = classNames.bind(style);
 function BookTicket() {
 
     const location = useLocation();
-    const { room, name, nameFilm, imgFilm, nameCinema} = location.state;
+    const { room, name, nameFilm, imgFilm, nameCinema, tokenUser, date} = location.state;
     const roomContent =  room.contentRoom;
-    const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWV1IiwiaWF0IjoxNjY4ODQ0MTczLCJleHAiOjg4MDY4ODQ0MTczfQ.1qFH8uKJO1oZIgSRpecQvdgcP8z_ynfrXNtC8Qd9f26YqN1D8sGWqapt3NaeNsr-dvvjLSEnKfy79_vj83RT5w";
-
+    const token = tokenUser;
 
     const [close, setClose] = useState(true);
     const [close2, setClose2] = useState(true);
@@ -42,9 +41,11 @@ function BookTicket() {
     const [infoProduct, setInfor] = useState([]);
 
     const [datas, setData] = useState({});
-    const [seatePosition, setSeatePosition] = useState(0);
     const [dataSeate, setDateSeate] = useState([]);
     const [seateBook, setSeateBook] = useState([]);
+    const [classSate, setClass] = useState("");
+    const [numberSate, setNumber] = useState("");
+    const [dataSeateBooked, setDataSeateBooked] = useState({});
 
     useEffect(()=> {
         axios
@@ -55,22 +56,43 @@ function BookTicket() {
 
     const setTypeSeate = (type, booked) => {
         if (booked==true) {
+            
             return 'seate__booked';
         }
-        else if (type<17) {
+        else if (type >= 10 && type<17) {
             return 'seate__vip';
+        }
+        else if (type < 10) {
+            return 'seate__vip-nav';
         }
         else {
             return 'seate__normal';
         }
     }
 
-    const setInfoSeate = (price, position) => {
+    const setInfoSeate = (price, position, sate) => {
         setMoneySate(price+moneySate);
-        setSeatePosition(position);
-        const data = [...seateBook]
+        const data = [...seateBook];
         data.push(position);
         setSeateBook(data);
+        const dataSeate = {
+            "book_date": "2022-11-19",
+            "total": price,
+            "showTime": 55,
+            "seatSet":data
+        }
+        setDataSeateBooked(dataSeate);
+        var ans = "";
+        for (var i = 0; i < data.length; i++) {
+            if (i === data.length-1) {
+                ans += "H" + data[i];
+            }
+            else {
+                ans += "H" + data[i] + ", ";
+            }
+        }
+        console.log(ans);
+        setNumber(ans);
     }
     const listSeate = 
     dataSeate.map(seate => {
@@ -257,6 +279,12 @@ function BookTicket() {
             var ans = value.toString(10);
             return ans.substr(0, ans.length-3) + "." + ans.substr(-3) + " đ";
         }
+    }
+    const handleSubmit = () => {
+        axios
+            .post('http://localhost:8080/api/booking/add', dataSeateBooked, {headers : {"Authorization" : `Bearer ${token}`}})
+            .then(response=>console.log(response))
+            .catch(err=>console.log(err))
     }
 
     return (
@@ -512,7 +540,7 @@ function BookTicket() {
                         <h5 className={cx('bill-heading')}>Thông tin vé</h5>
                         <div className={cx('bill__info-date')}>
                             <span>Ngày</span>
-                            <span>09/11/2022</span>
+                            <span>{date}</span>
                         </div>
                         <div className={cx('bill__info-time')}>
                             <span>Giờ chiếu</span>
@@ -528,7 +556,7 @@ function BookTicket() {
                         </div>
                         <div className={cx('bill__info-sate')}>
                             <span>Số ghế</span>
-                            <span>08</span>
+                            <span>{numberSate}</span>
                         </div>
                         <div className={cx('price-bill-info')}>{Convert(moneySate)}</div>
                     </div>
@@ -553,13 +581,14 @@ function BookTicket() {
                             <span>{Convert(totalMoney)}</span>
                         </div>
                         <div className={cx('price-money')}>{Convert(moneySate + totalMoney)}</div>
+                        <div className={cx('btn__confirm')}>
+                            <Link to={'payment'} state={{name: (name) ? name : "", data: datas, tokenUser: token, date: date, seates: seateBook}}>
+                                <button onClick={handleSubmit}>Xác Nhận</button>
+                            </Link>
+                        </div>
                     </div>
+
                 </div>
-                <Link to={'payment'} state={{name: (name) ? name : "", data: datas}}>
-                    <div className={cx('btn__confirm')}>
-                        <button>Xác Nhận</button>
-                    </div>
-                </Link>
             </div>
             <Footer/>
         </div>

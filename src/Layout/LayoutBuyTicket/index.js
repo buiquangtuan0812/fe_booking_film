@@ -16,21 +16,30 @@ const cx = classNames.bind(Style);
 
 
 function BuyTicket() {
-
-    let {id} = useParams();
-    const index = id;
-    const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWV1IiwiaWF0IjoxNjY4NzU5MTc2LCJleHAiOjg4MDY4NzU5MTc2fQ._A2KO2MfVL3cI812CC045nS-x6VN0sb0Fl27PmALim7QUSvNGsTGRUkY1rNFmhULB-fDNei9u8Mi86DEKxPkSA";
     
+    let {id} = useParams();
+    const index = id;    
     const [nameUser, setName] = useState("");
+    const [token, setToken] = useState("");
     const location = useLocation();
     const [visiable, setVisiable] = useState(false);
+    const [InfoFilm, setInfo] = useState({})
+    const contentRoom = []
+    const [day, setDay] = useState(0);
+    const [month, setMonth] = useState(0);
+    const [year, setYear] = useState(0);
+    const [dateOfWeek, setDate] = useState("");
+    const [dataRoom, setDataRoom] = useState([]);
+    const [nameCinema, setNameCinema] = useState("Cinema HÀ ĐÔNG");
+    const Months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    
     useEffect(() => {
         if (location.state) {
+            setToken(location.state.tokenUser);
             setName(location.state.name);
         }
     })
 
-    const [InfoFilm, setInfo] = useState({})
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/movies/list')
@@ -42,34 +51,19 @@ function BuyTicket() {
             })
     }, [])
         
-    const contentRoom = []
-    
-    const getContentRoom = (event) => {
-        const value = event.currentTarget;
-        const lst = [...value.childNodes];
-        for (let i = 0; i<lst.length;i++) {
-            contentRoom.push(lst[i].innerText);
-        }
-    }
-
-    const [day, setDay] = useState("");
-    const [month, setMonth] = useState("");
-    const [year, setYear] = useState("");
-    const [dateOfWeek, setDate] = useState("");
-    const Months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
     useEffect(() => {
         const date = new Date();
         const Month = date.getMonth() + 1;
         setDay(date.getDate());
         setMonth(Months[date.getMonth()]);
         setYear(date.getFullYear());
-        setDate(day + "/" + Month + "/" + year);
-    },[]);
-    const [dataRoom, setDataRoom] = useState([]);
+        var ans = day.toString() + "/" + Month.toString() + "/" + year.toString();
+        setDate(ans);
+    },[day, month, year]);
+
     useEffect(()=> {
         const Data = {
-            movieId: index+1,
+            movieId: 3,
             theaterName: "Cinema HÀ ĐÔNG",
             startTime: "19/11/2022"
         }
@@ -79,7 +73,15 @@ function BuyTicket() {
         .catch(err => console.log(err))
     }, []);
     
-    const [nameCinema, setNameCinema] = useState("Cinema HÀ ĐÔNG");
+    const getContentRoom = (event) => {
+        const value = event.currentTarget;
+        const lst = [...value.childNodes];
+        for (let i = 0; i<lst.length;i++) {
+            contentRoom.push(lst[i].innerText);
+        }
+    }
+
+    
     
     const getDataRoom = 
     dataRoom.map(room => {
@@ -94,7 +96,8 @@ function BuyTicket() {
 
         return (
             <li key = {room.id}> 
-                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}, name: (nameUser) ? nameUser : "", nameFilm: InfoFilm.name, imgFilm: InfoFilm.smallImageURl, nameCinema: nameCinema}} onClick={(e) => {getContentRoom(e)}}>
+                <Link to={`/bookticket/id=${index}`} state={{room: {contentRoom}, name: (nameUser) ? nameUser : "", nameFilm: InfoFilm.name, 
+                imgFilm: InfoFilm.smallImageURl, nameCinema: nameCinema, tokenUser:token, date: dateOfWeek}} onClick={(e) => {getContentRoom(e)}}>
                     <div className={cx('cinema__room-id')}>{room.screen.name}</div>
                     <div className={cx('cinema__room-time')}>{time}</div>
                     <div className={cx('cinema__room-seat')}>{`${capacity} Ghế ngồi`}</div>
@@ -148,7 +151,7 @@ function BuyTicket() {
         const jsonData = {
             movieId: InfoFilm.id,
             theaterName: event.target.value,
-            startTime: "18/11/2022"
+            startTime: "19/11/2022"
         }
         axios
             .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${token}`}, params: jsonData })
@@ -159,11 +162,11 @@ function BuyTicket() {
         setVisiable(true);
         const date = new Date();
         const month = date.getMonth() + 1;
-        setDate(days + "/" + month + "/" + year);
+        setDate(days.toString() + "/" + month + "/" + year);
         const jsonData = {
             movieId: InfoFilm.id,
             theaterName: nameCinema,
-            startTime: days + "/" + month + "/" + year
+            startTime: "19/11/2022"
         }
         axios
             .get('http://localhost:8080/api/showtime/filter', { headers: {"Authorization" : `Bearer ${token}`}, params: jsonData })

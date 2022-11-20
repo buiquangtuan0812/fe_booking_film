@@ -49,25 +49,36 @@
         height: 300px;
     }
     &-select {
+        padding: 0;
+        width: 440px;
         list-style: none;
+        margin: 36px;
         li {
+            width: 44px;
             display: inline-block;
-            margin: 6px 0;
+            cursor: pointer;
+            margin: 8px 4px;
             justify-content: center;
             .seate__vip {
-                padding-left: 28px;
+                padding-left: 2px;
+                line-height: 22px;
+                background: url('./image/sate_vip.gif') no-repeat 0 0;
+                background-size: 22px 22px;
+            }
+            .seate__vip-nav {
+                padding-left: 8px;
                 line-height: 22px;
                 background: url('./image/sate_vip.gif') no-repeat 0 0;
                 background-size: 22px 22px;
             }
             .seate__booked {
-                padding-left: 28px;
+                padding-left: 4px;
                 line-height: 22px;
                 background: url('./image/buyed.gif') no-repeat 0 0;
                 background-size: 22px 22px;
             }
             .seate__normal {
-                padding-left: 28px;
+                padding-left: 2px;
                 line-height: 22px;
                 background: url('./image/clcik.gif') no-repeat 0 0;
                 background-size: 22px 22px;
@@ -84,7 +95,11 @@
                 padding: 4px 10px;
                 background-color: #848484;
             }
+            
         }
+    }
+    &-type {
+        margin-top: 40px;
     }
 }
 
@@ -429,6 +444,7 @@
         }
     }
     .bill__money {
+        position: relative;
         &-sate {
             margin-bottom: 8px;
             :nth-child(1) {
@@ -437,34 +453,32 @@
             }
         }   
         &-buy {
-            margin-bottom: 8px;
             height: 100px;
+            margin-bottom: 8px;
             :nth-child(1) {
                 color: #a7a9ac;
                 margin-right: 53px;
             }
         }
         .price-money {
-            float: right;
+            float: left;
             font-size: 20px;
             margin-top: 12px;
             font-family: "linlivertine";
         }
-    }
-}
-
-.btn__confirm {
-    right: 74px;
-    top: 104px;
-    position: absolute;
-    button {
-        padding: 12px;
-        cursor: pointer;
-        color: #e5e1b0;
-        background-color: #000;
-    }
-    :hover {
-        color: #ecda0c;
-        opacity: 0.7;
+        .btn__confirm {
+            right: 14px;
+            position: absolute;
+            button {
+                padding: 12px;
+                cursor: pointer;
+                color: #e5e1b0;
+                background-color: #000;
+            }
+            :hover {
+                color: #ecda0c;
+                opacity: 0.7;
+            }
+        }
     }
 }

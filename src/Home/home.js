@@ -8,10 +8,11 @@ import { useLocation } from "react-router-dom";
 
 function Home() {
     const [nameUser, setName] = useState("");
+    const [tokenUser, setToken] = useState("");
     const location = useLocation();
-    const {tokenUser} = location.state.tokenUser;
     useEffect(() => {
         if (location.state) {
+            setToken(location.state.tokenUser);
             setName(location.state.nameUser);
         }
     })

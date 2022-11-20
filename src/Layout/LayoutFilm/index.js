@@ -22,9 +22,11 @@ const cx = classNames.bind(styles);
 function LayoutFilm() {
 
     const [nameUser, setName] = useState("");
+    const [token, setToken] = useState("");
     const location = useLocation();
     useEffect(() => {
         if (location.state) {
+            setToken(location.state.tokenUser);
             setName(location.state.name);
         }
     })
@@ -177,7 +179,7 @@ function LayoutFilm() {
                 <div className={cx('review')}>
                     <div className={cx('review_left')}>
                         <img src={listFilm.smallImageURl} />
-                        <Link to={`/buy_ticket/id=${index}`} state = {{name: (nameUser) ? nameUser : ""}}>
+                        <Link to={`/buy_ticket/id=${index}`} state = {{name: (nameUser) ? nameUser : "", tokenUser: token}}>
                             <button>Đặt vé</button>
                         </Link>
                     </div>

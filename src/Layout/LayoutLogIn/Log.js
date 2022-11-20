@@ -33,9 +33,8 @@ function Form() {
         axios
             .post('http://localhost:8080/login', data)
             .then(res => setToken(res.data))
-            .catch(err => alert("Nhập lại đi cu"))
+            .catch(err => alert("Sai tên đăng nhập hoặc mật khẩu !"))
     };
-    console.log(token);
     return (
         <>
             <div className={cx('layoutLog')}>

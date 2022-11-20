@@ -14,7 +14,7 @@ import {MdNavigateNext, GrFormNext} from 'react-icons/md';
 const cx = classNames.bind(style);
 
 function Movie(user) {
-
+    const token = user.token;
     const [dataMovie, setData] = useState([]);
     const [index, setId] = useState(0);
 

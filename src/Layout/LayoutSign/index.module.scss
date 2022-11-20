@@ -6,7 +6,8 @@
 }
 .confirm__success {
     z-index: 10;
-    left:556px;
+    left:50%;
+    transform: translateX(-50%);
     top:200px;
     width: 340px;
     min-height: 227px;

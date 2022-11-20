@@ -10,6 +10,7 @@ import {GrNext} from "react-icons/gr";
 const cx = classNames.bind(styles);
 
 function Movie(user) {
+    const token = user.token;
     const [data, setData] = useState([]);
     const [index, setIndex] = useState(0);
 
@@ -44,10 +45,10 @@ function Movie(user) {
                 <ul className={cx('display__film')}>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Đặt Vé</button>
                             </Link>
-                            <Link to = {`details_film/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to = {`details_film/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Chi Tiết</button>
                             </Link>
                         </div>
@@ -56,10 +57,10 @@ function Movie(user) {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Đặt Vé</button>
                             </Link>
-                            <Link to = {`details_film/id=${index+1}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to = {`details_film/id=${index+1}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Chi Tiết</button>
                             </Link>
                         </div>
@@ -68,10 +69,10 @@ function Movie(user) {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Đặt Vé</button>
                             </Link>
-                            <Link to = {`details_film/id=${index+2}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to = {`details_film/id=${index+2}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Chi Tiết</button>
                             </Link>
                         </div>
@@ -80,10 +81,10 @@ function Movie(user) {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Đặt Vé</button>
                             </Link>
-                            <Link to = {`details_film/id=${index+3}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to = {`details_film/id=${index+3}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Chi Tiết</button>
                             </Link>
                         </div>
@@ -92,10 +93,10 @@ function Movie(user) {
                     </li>
                     <li className={cx('film')}>
                         <div className={cx('option__film')}>
-                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Đặt Vé</button>
                             </Link>
-                            <Link to = {`details_film/id=${index+4}`} state={(user) ? {name: user.name} : ""}>
+                            <Link to = {`details_film/id=${index+4}`} state={(user) ? {name: user.name, tokenUser: token} : ""}>
                                 <button>Chi Tiết</button>
                             </Link>
                         </div>
