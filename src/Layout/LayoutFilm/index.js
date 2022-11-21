@@ -10,10 +10,11 @@ import Trailer from '../DefaultLayout/LayoutTrailer';
 import Heading from '../ExportDefaut';
 import Banner from './image/banner.jpg'
 
-import {BsPlayCircle} from "react-icons/bs";
+import {BsPlayCircle, } from "react-icons/bs";
 import {GrNext, GrPrevious} from "react-icons/gr";
 import {AiOutlineStar} from "react-icons/ai";
 import {IoIosClose} from "react-icons/io";
+import {BiUserCircle} from "react-icons/bi";
 
 
 
@@ -26,8 +27,8 @@ function LayoutFilm() {
     const location = useLocation();
     useEffect(() => {
         if (location.state) {
-            setToken(location.state.tokenUser);
             setName(location.state.name);
+            setToken(location.state.tokenUser);
         }
     })
 
@@ -36,12 +37,17 @@ function LayoutFilm() {
     const [idUrl, setId] = useState(0);
     const [isHide, setHide] = useState(true);
     const [srcAudio, setSrcAudio] = useState("");
+    const [lstComments, setComment] = useState([]);
+    const [comment, setCommentUser] = useState("");
 
     
     let {id} = useParams();
     const index = id;
 
     useEffect(() => {
+        const data = {
+            movieId: index
+        }
         axios
             .get('http://localhost:8080/api/movies/list')
             .then(res => {
@@ -50,6 +56,10 @@ function LayoutFilm() {
             .catch(err => {
                 console.log(err);
             })
+        axios
+            .get('http://localhost:8080/api/comments/list', {params : data})
+            .then(res =>setComment(res.data))
+            .catch(err => console.log(err))
     }, [])
     const listFilm = {};
     const listUrl = [];
@@ -135,6 +145,38 @@ function LayoutFilm() {
             )
         }
     });
+
+    const renderComment = 
+    lstComments.map(comment => (
+        <li key = {comment.content} className={cx('comment-item')}>
+            <div className={cx('content__feedback-heading')}>
+                <div className={cx('content__feedback-heading-icon')}>
+                    <BiUserCircle />
+                </div>
+                <div className={cx('content__feedback-heading-name')}>
+                    <p>{comment.user}</p>
+                    <p>{comment.content}</p>
+                </div>
+            </div>
+            <div className={cx('content__feedback-text')}>
+                <span>Thích</span>
+                <span>Bình luận</span>
+                <span>{comment.commentDate}</span>
+            </div>
+        </li>
+    ))
+
+    const handleComment = () => {
+        const data = {
+            movieId: index,
+            content: comment
+        }
+        console.log(data);
+        axios
+            .post('http://localhost:8080/api/comments/post', data, {headers : {"Authorization" : `Bearer ${token}`}})
+            .then(res=>console.log(res))
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className={cx('container_film')}>
@@ -237,11 +279,14 @@ function LayoutFilm() {
                         <span>0 điểm</span>
                     </div>
                     <div className={cx('feedback__content-text')}>
-                        <textarea id="txtComment" placeholder="Vui lòng nhập đánh giá phim!" cols="30" rows="10"></textarea>
+                        <textarea id="txtComment" placeholder="Vui lòng nhập đánh giá phim!" cols="30" rows="10" onChange={(e)=>setCommentUser(e.target.value)}></textarea>
                         {/* <input type="text" placeholder="Vui lòng viết đánh giá phim!" /> */}
-                        <button type="submit">Bình Luận</button>
+                        <button type="submit" onClick={handleComment}>Bình Luận</button>
                     </div>
                 </div>
+                <ul className={cx('content__feedback')}>
+                    {renderComment}
+                </ul>
             </div>
 
             <Footer src = {Banner}/>

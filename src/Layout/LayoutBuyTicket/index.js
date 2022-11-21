@@ -1,6 +1,5 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
 
 import classNames from "classnames/bind";
 import Style from "./style.module.scss";
@@ -200,7 +199,7 @@ function BuyTicket() {
     return (
         <div>
             <Heading name = {nameUser}/>
-            
+            <div className={cx('buy-ticket')}>MUA VÉ XEM PHIM</div>
             <div className= {cx('buyticket__container')}>
                 <div className={cx('buyticket__time')}>
                     <div className={cx('time__heading')}>

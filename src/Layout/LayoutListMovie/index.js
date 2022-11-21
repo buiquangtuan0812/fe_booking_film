@@ -9,12 +9,15 @@ import Heading from "../ExportDefaut";
 import Footer from '../ExportFooter';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {MdNavigateNext, GrFormNext} from 'react-icons/md';
+import {MdNavigateNext} from 'react-icons/md';
+
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
 function Movie(user) {
-    const token = user.token;
+    const location = useLocation();
+    const {name, tokenUser} = location.state;
     const [dataMovie, setData] = useState([]);
     const [index, setId] = useState(0);
 
@@ -43,10 +46,10 @@ function Movie(user) {
             <div  className={cx('card-top')}>
                 <img className={cx('img')} src={movie.smallImageURl}/>
                 <div  className={cx('btn')}>
-                    <Link className={cx('btn-component')} to={`/buy_ticket/id=${index}`} state={(user) ? {name: user.name} : ""}>
+                    <Link className={cx('btn-component')} to={`/buy_ticket/id=${index}`} state={{name: (user) ? name : "", tokenUser: tokenUser}}>
                         Đặt Vé
                     </Link>
-                    <Link className={cx('btn-component')} to = {`details_film/id=${movie.id-1}`} state={(user) ? {name : user.name} : ""}>
+                    <Link className={cx('btn-component')} to = {`details_film/id=${movie.id-1}`} state={{name: (user) ? name : "", tokenUser: tokenUser}}>
                         Chi tiết
                     </Link>
                 </div>
@@ -70,7 +73,8 @@ function Movie(user) {
     }
     return (
         <div>
-            <Heading/>
+            <Heading name = {name}/>
+            <div className={cx('list')}>Phim hot tại rạp</div>
             <section className={cx('movie')}>
                 <div className={cx('movie__banner')}>
                     <div className={cx('movie__slider')}> 
@@ -79,7 +83,7 @@ function Movie(user) {
                         </a>
                     </div>
                     <div className={cx('btn-next-id')}>
-                    <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
+                    <MdNavigateNext />
                     </div>
                 </div>
                 <div className={cx('container')}>    

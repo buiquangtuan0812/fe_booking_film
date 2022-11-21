@@ -45,6 +45,8 @@ function BookTicket() {
     const [seateBook, setSeateBook] = useState([]);
     const [classSate, setClass] = useState("");
     const [numberSate, setNumber] = useState("");
+    const [numberUser, setNumberUser] = useState(0);
+    const [positionS, setPosition] = useState("");
     const [dataSeateBooked, setDataSeateBooked] = useState({});
 
     useEffect(()=> {
@@ -85,18 +87,8 @@ function BookTicket() {
         setDataSeateBooked(dataSeate);
         const result = [...numberSate];
         result.push(seate);
-        console.log(result)
-        var ans = "";
-        for (var i = 0; i < result.length; i++) {
-            if (i === result.length-1) {
-                ans += result[i];
-            }
-            else {
-                ans += result[i] + ", ";
-            }
-        } 
-        console.log(ans);
-        setNumber(ans);
+        setPosition(result.join('-'));
+        setNumber(result);
     }
     const listSeate = 
     dataSeate.map(seate => {
@@ -275,6 +267,7 @@ function BookTicket() {
         setType(type);
     };
 
+
     const Convert = (value) => {
         if (value==0) {
             return "0 đ";
@@ -294,6 +287,7 @@ function BookTicket() {
     return (
         <div>
             <Heading name = {name}/>
+            <div className={cx('book-ticket')}>ĐẶT GHẾ</div>
             <div className={cx('cb')}>
                 <div className={cx('container__bookticket')}>
                     <h3 className={cx('book__heading')}>Chọn ghế</h3>
@@ -301,7 +295,7 @@ function BookTicket() {
                         <div className={cx('bookticket__select-age')}>
                             <span className={cx('select-number')}>Số người</span>
                             <span>
-                                <select className={cx('option-member')}>
+                                <select className={cx('option-member')} onChange={(e)=> setNumberUser(e.target.value)}>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -560,7 +554,7 @@ function BookTicket() {
                         </div>
                         <div className={cx('bill__info-sate')}>
                             <span>Số ghế</span>
-                            <span>{numberSate}</span>
+                            <span>{positionS}</span>
                         </div>
                         <div className={cx('price-bill-info')}>{Convert(moneySate)}</div>
                     </div>
@@ -586,7 +580,7 @@ function BookTicket() {
                         </div>
                         <div className={cx('price-money')}>{Convert(moneySate + totalMoney)}</div>
                         <div className={cx('btn__confirm')}>
-                            <Link to={'payment'} state={{name: (name) ? name : "", data: datas, tokenUser: token, date: date, seates: seateBook}}>
+                            <Link to={'payment'} state={{name: (name) ? name : "", data: datas, tokenUser: token, date: date, seates: seateBook, numberUser: numberUser, position: positionS}}>
                                 <button onClick={handleSubmit}>Xác Nhận</button>
                             </Link>
                         </div>

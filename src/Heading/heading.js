@@ -14,6 +14,8 @@ const cx = classNames.bind(styles);
 
 function Heading(nameUser) {
 
+    const token = nameUser.token;
+
     const iconUser = (value) => {
         if (value!="") {
             return <BiUserCircle className={cx('icon-login')}/>
@@ -89,7 +91,7 @@ function Heading(nameUser) {
                             <a>Mua Vé</a>
                         </li>
                         <li className = {cx('option__items')}>
-                            <Link to='/list_films'>Phim</Link>
+                            <Link to='/list_films' state={{name:nameUser.name, tokenUser: token}}>Phim</Link>
                         </li>
                         <li className = {cx('option__items')}>
                             <a>RẠP Chiếu Phim</a>

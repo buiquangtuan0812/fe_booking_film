@@ -25,11 +25,11 @@ function Footer(image) {
                                 </li>
                             </ul>
                             <div className={cx('footer__info')}>
-                                <p>Công ty TNHH LOTTE CINEMA VIỆT NAM</p>
-                                <p>Giấy CNĐKDN: 0302575928, đăng ký lần đầu ngày 02/05/2008, đăng ký thay đổi lần thứ 10 ngày 30/03/2018, cấp bởi Sở KHĐT Thành phố Hồ Chí Minh </p>
-                                <p>Địa chỉ: Tầng 3, TTTM Lotte, số 469 đường Nguyễn Hữu Thọ, Phường Tân Hưng, Quận 7, TPHCM, Việt Nam</p>
+                                <p>Công ty TNHH PTIT CINEMA VIỆT NAM</p>
+                                <p>Giấy CNĐKDN: 0908232002, đăng ký lần đầu ngày 20/08/2022, đăng ký thay đổi lần thứ 10 ngày 20/08/2022, cấp bởi Sở KHĐT Thành phố Hà Nội </p>
+                                <p>Địa chỉ: Tầng 3-A2 HVCNBCVT, 96A Trần Phú, P.Mộ Lao, Hà Đông, Hà Nội, Việt Nam</p>
                                 <p>Hotline: (028) 3775 2524</p>
-                                <p>COPYRIGHT © LOTTECINEMAVN.COM - ALL RIGHTS RESERVED.</p>
+                                <p>COPYRIGHT © PTIT.COM - ALL RIGHTS RESERVED.</p>
                             </div>
                         </div>
                     </div>

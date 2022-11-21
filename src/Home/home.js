@@ -18,7 +18,7 @@ function Home() {
     })
     return (
         <div>
-            <Heading name = {nameUser}/>
+            <Heading name = {nameUser} token = {tokenUser}/>
             <Suggest name = {nameUser} token = {tokenUser}/>
             <ListMovie name = {nameUser} token = {tokenUser}/>
             <Footer/>

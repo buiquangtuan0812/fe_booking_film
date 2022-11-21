@@ -13,7 +13,7 @@ const cx = classNames.bind(Style);
 function LayoutPay() {
 
     const location = useLocation();
-    const {name, data, tokenUser, date, seates} = location.state; 
+    const {name, data, tokenUser, date, seates, numberUser, position} = location.state; 
     const [isChecked, setCheck]= useState(false);
     const [none, setNone] = useState(false);
     const [number, setNumber] = useState("");
@@ -92,9 +92,9 @@ function LayoutPay() {
                                             <span className={cx('content__film-info-title')}>Phòng chiếu</span>
                                             <span className={cx('content__film-info-room')}>{data.film[0]}</span>
                                             <span className={cx('content__film-info-title')}>Số người</span>
-                                            <span className={cx('content__film-info-number')}>{data.number}</span>
+                                            <span className={cx('content__film-info-number')}>{numberUser}</span>
                                             <span className={cx('content__film-info-title')}>Ghế ngồi</span>
-                                            <span className={cx('content__film-info-sate')}>{number}</span>
+                                            <span className={cx('content__film-info-sate')}>{position}</span>
                                         </div>
 
                                     </div>

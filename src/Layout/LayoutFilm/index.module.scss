@@ -241,6 +241,49 @@
             }
         }
     }
+    .content__feedback {
+        padding: 24px;
+        list-style-type: none;
+        .comment-item {
+            margin: 24px 0;
+        }
+        &-heading {
+            display: flex;
+            &-icon {
+                font-size: 40px;
+                margin-right: 24px;
+            }
+            &-name {
+                width: 100%;
+                min-height: 60px;
+                padding: 9px 12px;
+                border-radius: 18px;
+                background-color: #f2f3f5;
+                :nth-child(1) {
+                    margin: 0;
+                    font-weight: 600;
+                    font-size: 20px;
+                }
+                :nth-child(2) {
+                    color: #1c1e21;
+                }
+            }
+        }
+        &-text {
+            margin-top: 8px;
+            :nth-child(1) {
+                margin-left: 64px;
+            }
+            :nth-child(1),
+            :nth-child(2) {
+                cursor: pointer;
+                color: orange;
+            }
+            span {
+                margin: 12px;
+            }
+        }
+    }
 }
 
 .wrapper__trailer {
