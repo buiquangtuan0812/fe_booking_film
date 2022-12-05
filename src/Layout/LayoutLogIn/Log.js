@@ -55,14 +55,14 @@ function Form() {
 
                             <div className={cx('form__submit')}>
                                 <Link to={(token.accessToken) ? "/home" : "/login"} state = {(token.accessToken) ? {nameUser: token.name, tokenUser:token.accessToken} : ""}>
-                                    <button type = "button" className = {cx('submit-log')} onClick={sendInput}>Đăng Nhập</button>
+                                    <button type = "button" className = {cx('submit-log')} onClick={sendInput}>Đăng nhập</button>
                                 </Link>
                                 <p className={cx('require-psw')}>Bạn quên mật khẩu?</p>
                             </div>
                             <div className={cx('suggest-sign')}>
                                 <p className={cx('suggest-text')}>Bạn chưa có tài khoản?</p>
                                 <Link to="/sign" >
-                                    <button type = "button" className = {cx('submit-sign')}>Đăng Ký</button>
+                                    <button type = "button" className = {cx('submit-sign')}>Đăng ký</button>
                                 </Link>
                             </div>
                         </div>

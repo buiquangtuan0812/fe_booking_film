@@ -107,11 +107,11 @@ function Sign() {
                             <div className={cx('sign__main-content')}>
                                 <form className={cx('form__input')}>
                                     <label htmlFor ="ID"><b>Họ Và Tên</b>
-                                        <input name = "ID" type = "text" placeholder="" className = {cx('input-sign-id')} onChange={(e)=>getName(e.target.value)}/>
+                                        <input name = "ID" type = "text" placeholder="Vui lòng nhập họ và tên" className = {cx('input-sign-id')} onChange={(e)=>getName(e.target.value)}/>
                                     </label>
                                     <br></br>
                                     <label htmlFor ="psw"><b>Email</b>
-                                        <input type="text" name = "psw" className={cx('input-sign-number')} placeholder="email@gmail.com" onChange={(e)=>getEmail(e.target.value)}/>
+                                        <input type="text" name = "psw" className={cx('input-sign-email')} placeholder="email@gmail.com" onChange={(e)=>getEmail(e.target.value)}/>
                                     </label>
                                     <br></br>
                                     <label htmlFor ="psw"><b>Mật Khẩu</b>
@@ -201,7 +201,11 @@ function Sign() {
                                         <a> điều khoản!</a>
                                     </p>
                                 </div>
-                                <button type = "button" className = {cx('btn-submit-sign')} onClick={sendRequest}>Đăng Ký</button>
+                                <button type = "button" className = {cx('btn-submit-sign')} onClick={sendRequest}>Đăng Ký
+                                    <div className={cx('arrow-wraper')}>
+                                        <div className={cx('arrow')}></div>
+                                    </div>
+                                </button>
                             </div>
                             {/* <div className="form__main-img">
                                 <img src={FromImage} className = "ad-img"/>

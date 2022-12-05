@@ -81,7 +81,7 @@
 .sign__main {
     background-color: #fff;
     min-width: 542px;
-    box-shadow: 1px 1px 2px 2px #ccc;
+    border-radius: 48px;
     padding: 32px 36px 32px 48px;
 }
 .sign__main-content {
@@ -94,29 +94,33 @@
     font-size: 16px;
     border: 1px solid #ccc;
     margin: 8px 0 8px 90px;
+    border-radius: 16px;
 }
-.input-sign-number {
+.input-sign-email {
     width: 332px;
     font-size: 16px;
     padding: 12px;
     margin: 8px 0 8px 124px;
+    border-radius: 16px;
     border: 1px solid #ccc;
 }
 .input-sign-psw {
     width: 332px;
     font-size: 16px;
     padding: 12px;
+    border-radius: 16px;
     margin: 8px 0 8px 93px;
     border: 1px solid #ccc;
 }
 .options-year,
 .options-month,
 .options-day {
-    margin: 12px 16px 16px 16px;
-    border: 1px solid #ccc;
     width: 98px;
     padding: 8px;
+    border-radius: 16px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    margin: 12px 16px 16px 16px;
 }
 
 .btn-sign {
@@ -154,6 +158,64 @@
     &:hover {
         cursor: pointer;
     }
+}
+.btn-submit-sign {
+    --primary-color: #14a44d;
+    --secondary-color: #fff;
+    --hover-color: #111;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color);
+    padding: 16px 20px;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+}
+.btn-submit-sign .arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.btn-submit-sign .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+  
+.btn-submit-sign .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+  
+.btn-submit-sign:hover {
+    background-color: var(--hover-color);
+}
+  
+.btn-submit-sign:hover .arrow {
+    background: var(--secondary-color);
+}
+  
+.btn-submit-sign:hover .arrow:before {
+    right: 0;
 }
 
 

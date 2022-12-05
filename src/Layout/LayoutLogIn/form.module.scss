@@ -24,7 +24,7 @@
 .form__main {
     width: 898px;
     display: flex;
-    border-radius: 4px;
+    border-radius: 48px;
     padding: 32px 40px;
     background-color: #fff;
 }
@@ -40,12 +40,16 @@
     margin-left: 24px;
     margin-bottom: 20px;
     font-size: 16px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
 }
 .input-psw {
     padding: 12px;
     width: 290px;
     font-size: 16px;
+    border-radius: 16px;
     margin-left: 24px;
+    border: 1px solid #ccc;
     margin-bottom: 24px;
 }
 
@@ -59,14 +63,49 @@
 }
 
 .submit-log{
+    position: relative;
     padding: 16px 24px;
     font-size: 16px;
     color: #ffffff;
     border: none;
     border-radius: 3px;
     background-color: #e4a11b;
+    overflow: hidden;
+    z-index: 1;
 }
-.submit-log:hover,
+.submit-log::after, .submit-log::before {
+    content: " ";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00A97F;
+    transition: 0.7s ease;
+    z-index: -1;
+}
+.submit-log:active {
+    filter: brightness(.8);
+   }
+
+.submit-log::before {
+    top: -2em;
+    left: -2em;
+}
+   
+.submit-log::after {
+    left: calc(100% + 2em);
+    top: calc(100% + 2em);
+}
+.submit-log:hover::after, .submit-log:hover::before {
+    width: 410px;
+    height: 410px;
+}
+.submit-log:hover {
+    cursor: pointer;
+    color: #333;
+}
+
 .submit-sign:hover,
 .require-psw:hover,
 .suggest-text:hover {
@@ -89,11 +128,44 @@
     color: #fff;
     border: none;
     border-radius: 3px;
-    background-color: #e4a11b;
+    background-color: #000;
     margin-left: 150px;
     font-size: 16px;
     padding: 0px 20px;
     height: 40px;
+    position: relative;
+}
+.submit-sign::before {
+    content: " ";
+    position: absolute;
+    width: 40px;
+    height: 24px;
+    top: -5px;
+    left: -5px;
+    border-top: 3px solid #00A97F;
+    border-left: 3px solid #00A97F;
+}
+.submit-sign::after {
+    content: " ";
+    position: absolute;
+    width: 40px;
+    height: 24px;
+    right: -5px;
+    bottom: -5px;
+    border-bottom: 3px solid #00A97F;
+    border-right: 3px solid #00A97F;
+}
+
+.submit-sign:hover::before {
+    transition: 0.4s ease;
+    width: 92px;
+    height: 36px; 
+}
+
+.submit-sign:hover::after {
+    width: 92px;
+    transition: 0.4s ease;
+    height: 36px; 
 }
 
 .clause {
